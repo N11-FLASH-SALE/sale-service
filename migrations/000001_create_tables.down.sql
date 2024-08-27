@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS process;
+DROP TABLE IF EXISTS wishlist;
+DROP TABLE IF EXISTS feedback;
+DROP TABLE IF EXISTS bought;
+DROP TYPE IF EXISTS process_status;
