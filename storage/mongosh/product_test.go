@@ -110,3 +110,37 @@ func TestIsProductOk(t *testing.T) {
 	}
 	t.Log("Product is OK")
 }
+
+func TestAddPhotosToProduct(t *testing.T) {
+	db, err := Connect(context.Background())
+	if err != nil {
+		t.Fatal(err)
+	}
+	repo := NewProductsRepository(db)
+	req := &pb.AddPhotosRequest{
+		ProductId: "66cf7076533ee98a300b9020",
+		PhotoUrl:  "photo1.jpg",
+	}
+	err = repo.AddPhotosToProduct(context.Background(), req)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("Photos added to product successfully")
+}
+
+func TestDeletePhotosFromProduct(t *testing.T) {
+	db, err := Connect(context.Background())
+	if err != nil {
+		t.Fatal(err)
+	}
+	repo := NewProductsRepository(db)
+	req := &pb.DeletePhotosRequest{
+		ProductId: "66cf7076533ee98a300b9020",
+		PhotoUrl:  "photo2.jpg",
+	}
+	err = repo.DeletePhotosFromProduct(context.Background(), req)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("Photos deleted from product successfully")
+}

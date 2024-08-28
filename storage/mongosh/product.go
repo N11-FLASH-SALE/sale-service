@@ -280,30 +280,52 @@ func (r *ProductsRepo) IsProductOk(ctx context.Context, req *pb.ProductId) error
 }
 
 func (r *ProductsRepo) AddPhotosToProduct(ctx context.Context, req *pb.AddPhotosRequest) error {
-	// Convert the product ID from string to ObjectID
 	objID, err := primitive.ObjectIDFromHex(req.ProductId)
 	if err != nil {
 		return fmt.Errorf("invalid product id: %w", err)
 	}
 
-	// Prepare the update operation to add the photo URL to the photos array
 	update := bson.M{
 		"$push": bson.M{"photos": req.PhotoUrl},
 	}
 
-	// Define the filter to find the product
 	filter := bson.M{
 		"_id":        objID,
-		"deleted_at": nil, // Ensure the product has not been soft-deleted
+		"deleted_at": nil,
 	}
 
-	// Perform the update operation
 	result, err := r.Coll.UpdateOne(ctx, filter, update)
 	if err != nil {
 		return fmt.Errorf("failed to update product: %w", err)
 	}
 
-	// Check if the product was found and updated
+	if result.MatchedCount == 0 {
+		return fmt.Errorf("product not found or has been deleted")
+	}
+
+	return nil
+}
+
+func (r *ProductsRepo) DeletePhotosFromProduct(ctx context.Context, req *pb.DeletePhotosRequest) error {
+	objID, err := primitive.ObjectIDFromHex(req.ProductId)
+	if err != nil {
+		return fmt.Errorf("invalid product id: %w", err)
+	}
+
+	update := bson.M{
+		"$pull": bson.M{"photos": req.PhotoUrl},
+	}
+
+	filter := bson.M{
+		"_id":        objID,
+		"deleted_at": nil,
+	}
+
+	result, err := r.Coll.UpdateOne(ctx, filter, update)
+	if err != nil {
+		return fmt.Errorf("failed to update product: %w", err)
+	}
+
 	if result.MatchedCount == 0 {
 		return fmt.Errorf("product not found or has been deleted")
 	}
