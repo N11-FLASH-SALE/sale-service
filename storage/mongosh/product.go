@@ -58,11 +58,10 @@ func (r *ProductsRepo) CreateProduct(ctx context.Context, req *pb.CreateProductR
 }
 
 func (r *ProductsRepo) GetProduct(ctx context.Context, req *pb.GetProductRequest) (*pb.GetProductResponse, error) {
-	// Create a filter to match products based on request parameters
 	filter := bson.M{}
 
 	if req.Name != "" {
-		filter["name"] = bson.M{"$regex": req.Name, "$options": "i"} // Case-insensitive search
+		filter["name"] = bson.M{"$regex": req.Name, "$options": "i"}
 	}
 	if req.MinPrice > 0 {
 		filter["price"] = bson.M{"$gte": req.MinPrice}

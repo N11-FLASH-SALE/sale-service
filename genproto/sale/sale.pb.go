@@ -787,6 +787,61 @@ func (x *UpdateProductRequest) GetEndDate() string {
 	return ""
 }
 
+type AddPhotosRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ProductId string `protobuf:"bytes,1,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
+	PhotoUrl  string `protobuf:"bytes,2,opt,name=photo_url,json=photoUrl,proto3" json:"photo_url,omitempty"`
+}
+
+func (x *AddPhotosRequest) Reset() {
+	*x = AddPhotosRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sale_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddPhotosRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddPhotosRequest) ProtoMessage() {}
+
+func (x *AddPhotosRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_sale_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddPhotosRequest.ProtoReflect.Descriptor instead.
+func (*AddPhotosRequest) Descriptor() ([]byte, []int) {
+	return file_sale_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *AddPhotosRequest) GetProductId() string {
+	if x != nil {
+		return x.ProductId
+	}
+	return ""
+}
+
+func (x *AddPhotosRequest) GetPhotoUrl() string {
+	if x != nil {
+		return x.PhotoUrl
+	}
+	return ""
+}
+
 type CreateWishlistRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -799,7 +854,7 @@ type CreateWishlistRequest struct {
 func (x *CreateWishlistRequest) Reset() {
 	*x = CreateWishlistRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[8]
+		mi := &file_sale_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -812,7 +867,7 @@ func (x *CreateWishlistRequest) String() string {
 func (*CreateWishlistRequest) ProtoMessage() {}
 
 func (x *CreateWishlistRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[8]
+	mi := &file_sale_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -825,7 +880,7 @@ func (x *CreateWishlistRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateWishlistRequest.ProtoReflect.Descriptor instead.
 func (*CreateWishlistRequest) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{8}
+	return file_sale_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *CreateWishlistRequest) GetUserId() string {
@@ -853,7 +908,7 @@ type WishlistResponse struct {
 func (x *WishlistResponse) Reset() {
 	*x = WishlistResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[9]
+		mi := &file_sale_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -866,7 +921,7 @@ func (x *WishlistResponse) String() string {
 func (*WishlistResponse) ProtoMessage() {}
 
 func (x *WishlistResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[9]
+	mi := &file_sale_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -879,7 +934,7 @@ func (x *WishlistResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WishlistResponse.ProtoReflect.Descriptor instead.
 func (*WishlistResponse) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{9}
+	return file_sale_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *WishlistResponse) GetId() string {
@@ -900,7 +955,7 @@ type GetWishlistRequest struct {
 func (x *GetWishlistRequest) Reset() {
 	*x = GetWishlistRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[10]
+		mi := &file_sale_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -913,7 +968,7 @@ func (x *GetWishlistRequest) String() string {
 func (*GetWishlistRequest) ProtoMessage() {}
 
 func (x *GetWishlistRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[10]
+	mi := &file_sale_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -926,7 +981,7 @@ func (x *GetWishlistRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetWishlistRequest.ProtoReflect.Descriptor instead.
 func (*GetWishlistRequest) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{10}
+	return file_sale_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GetWishlistRequest) GetUserId() string {
@@ -947,7 +1002,7 @@ type GetWishlistResponse struct {
 func (x *GetWishlistResponse) Reset() {
 	*x = GetWishlistResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[11]
+		mi := &file_sale_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -960,7 +1015,7 @@ func (x *GetWishlistResponse) String() string {
 func (*GetWishlistResponse) ProtoMessage() {}
 
 func (x *GetWishlistResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[11]
+	mi := &file_sale_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -973,7 +1028,7 @@ func (x *GetWishlistResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetWishlistResponse.ProtoReflect.Descriptor instead.
 func (*GetWishlistResponse) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{11}
+	return file_sale_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetWishlistResponse) GetProductId() []string {
@@ -998,7 +1053,7 @@ type Processes struct {
 func (x *Processes) Reset() {
 	*x = Processes{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[12]
+		mi := &file_sale_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1011,7 +1066,7 @@ func (x *Processes) String() string {
 func (*Processes) ProtoMessage() {}
 
 func (x *Processes) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[12]
+	mi := &file_sale_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1024,7 +1079,7 @@ func (x *Processes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Processes.ProtoReflect.Descriptor instead.
 func (*Processes) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{12}
+	return file_sale_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *Processes) GetId() string {
@@ -1076,7 +1131,7 @@ type CreateProcessRequest struct {
 func (x *CreateProcessRequest) Reset() {
 	*x = CreateProcessRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[13]
+		mi := &file_sale_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1089,7 +1144,7 @@ func (x *CreateProcessRequest) String() string {
 func (*CreateProcessRequest) ProtoMessage() {}
 
 func (x *CreateProcessRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[13]
+	mi := &file_sale_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1102,7 +1157,7 @@ func (x *CreateProcessRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateProcessRequest.ProtoReflect.Descriptor instead.
 func (*CreateProcessRequest) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{13}
+	return file_sale_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *CreateProcessRequest) GetUserId() string {
@@ -1144,7 +1199,7 @@ type ProcessResponse struct {
 func (x *ProcessResponse) Reset() {
 	*x = ProcessResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[14]
+		mi := &file_sale_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1157,7 +1212,7 @@ func (x *ProcessResponse) String() string {
 func (*ProcessResponse) ProtoMessage() {}
 
 func (x *ProcessResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[14]
+	mi := &file_sale_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1170,7 +1225,7 @@ func (x *ProcessResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProcessResponse.ProtoReflect.Descriptor instead.
 func (*ProcessResponse) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{14}
+	return file_sale_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *ProcessResponse) GetId() string {
@@ -1192,7 +1247,7 @@ type GetProcessOfUserByProductIdRequest struct {
 func (x *GetProcessOfUserByProductIdRequest) Reset() {
 	*x = GetProcessOfUserByProductIdRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[15]
+		mi := &file_sale_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1205,7 +1260,7 @@ func (x *GetProcessOfUserByProductIdRequest) String() string {
 func (*GetProcessOfUserByProductIdRequest) ProtoMessage() {}
 
 func (x *GetProcessOfUserByProductIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[15]
+	mi := &file_sale_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1218,7 +1273,7 @@ func (x *GetProcessOfUserByProductIdRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use GetProcessOfUserByProductIdRequest.ProtoReflect.Descriptor instead.
 func (*GetProcessOfUserByProductIdRequest) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{15}
+	return file_sale_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *GetProcessOfUserByProductIdRequest) GetUserId() string {
@@ -1246,7 +1301,7 @@ type GetProcessOfUserByProductIdResponse struct {
 func (x *GetProcessOfUserByProductIdResponse) Reset() {
 	*x = GetProcessOfUserByProductIdResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[16]
+		mi := &file_sale_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1259,7 +1314,7 @@ func (x *GetProcessOfUserByProductIdResponse) String() string {
 func (*GetProcessOfUserByProductIdResponse) ProtoMessage() {}
 
 func (x *GetProcessOfUserByProductIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[16]
+	mi := &file_sale_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1272,7 +1327,7 @@ func (x *GetProcessOfUserByProductIdResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use GetProcessOfUserByProductIdResponse.ProtoReflect.Descriptor instead.
 func (*GetProcessOfUserByProductIdResponse) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{16}
+	return file_sale_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *GetProcessOfUserByProductIdResponse) GetProcesses() []*Processes {
@@ -1293,7 +1348,7 @@ type GetProcessByProductIdRequest struct {
 func (x *GetProcessByProductIdRequest) Reset() {
 	*x = GetProcessByProductIdRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[17]
+		mi := &file_sale_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1306,7 +1361,7 @@ func (x *GetProcessByProductIdRequest) String() string {
 func (*GetProcessByProductIdRequest) ProtoMessage() {}
 
 func (x *GetProcessByProductIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[17]
+	mi := &file_sale_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1319,7 +1374,7 @@ func (x *GetProcessByProductIdRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProcessByProductIdRequest.ProtoReflect.Descriptor instead.
 func (*GetProcessByProductIdRequest) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{17}
+	return file_sale_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GetProcessByProductIdRequest) GetProductId() string {
@@ -1340,7 +1395,7 @@ type GetProcessByProductIdResponse struct {
 func (x *GetProcessByProductIdResponse) Reset() {
 	*x = GetProcessByProductIdResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[18]
+		mi := &file_sale_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1353,7 +1408,7 @@ func (x *GetProcessByProductIdResponse) String() string {
 func (*GetProcessByProductIdResponse) ProtoMessage() {}
 
 func (x *GetProcessByProductIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[18]
+	mi := &file_sale_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1366,7 +1421,7 @@ func (x *GetProcessByProductIdResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProcessByProductIdResponse.ProtoReflect.Descriptor instead.
 func (*GetProcessByProductIdResponse) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{18}
+	return file_sale_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *GetProcessByProductIdResponse) GetProcesses() []*Processes {
@@ -1388,7 +1443,7 @@ type UpdateProcessRequest struct {
 func (x *UpdateProcessRequest) Reset() {
 	*x = UpdateProcessRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[19]
+		mi := &file_sale_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1401,7 +1456,7 @@ func (x *UpdateProcessRequest) String() string {
 func (*UpdateProcessRequest) ProtoMessage() {}
 
 func (x *UpdateProcessRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[19]
+	mi := &file_sale_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1414,7 +1469,7 @@ func (x *UpdateProcessRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateProcessRequest.ProtoReflect.Descriptor instead.
 func (*UpdateProcessRequest) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{19}
+	return file_sale_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *UpdateProcessRequest) GetId() string {
@@ -1442,7 +1497,7 @@ type CancelProcessRequest struct {
 func (x *CancelProcessRequest) Reset() {
 	*x = CancelProcessRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[20]
+		mi := &file_sale_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1455,7 +1510,7 @@ func (x *CancelProcessRequest) String() string {
 func (*CancelProcessRequest) ProtoMessage() {}
 
 func (x *CancelProcessRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[20]
+	mi := &file_sale_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1468,7 +1523,7 @@ func (x *CancelProcessRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CancelProcessRequest.ProtoReflect.Descriptor instead.
 func (*CancelProcessRequest) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{20}
+	return file_sale_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *CancelProcessRequest) GetId() string {
@@ -1492,7 +1547,7 @@ type CreateFeedbackRequest struct {
 func (x *CreateFeedbackRequest) Reset() {
 	*x = CreateFeedbackRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[21]
+		mi := &file_sale_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1505,7 +1560,7 @@ func (x *CreateFeedbackRequest) String() string {
 func (*CreateFeedbackRequest) ProtoMessage() {}
 
 func (x *CreateFeedbackRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[21]
+	mi := &file_sale_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1518,7 +1573,7 @@ func (x *CreateFeedbackRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateFeedbackRequest.ProtoReflect.Descriptor instead.
 func (*CreateFeedbackRequest) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{21}
+	return file_sale_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *CreateFeedbackRequest) GetUserId() string {
@@ -1560,7 +1615,7 @@ type FeedbackResponse struct {
 func (x *FeedbackResponse) Reset() {
 	*x = FeedbackResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[22]
+		mi := &file_sale_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1573,7 +1628,7 @@ func (x *FeedbackResponse) String() string {
 func (*FeedbackResponse) ProtoMessage() {}
 
 func (x *FeedbackResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[22]
+	mi := &file_sale_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1586,7 +1641,7 @@ func (x *FeedbackResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FeedbackResponse.ProtoReflect.Descriptor instead.
 func (*FeedbackResponse) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{22}
+	return file_sale_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *FeedbackResponse) GetId() string {
@@ -1607,7 +1662,7 @@ type GetFeedbackRequest struct {
 func (x *GetFeedbackRequest) Reset() {
 	*x = GetFeedbackRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[23]
+		mi := &file_sale_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1620,7 +1675,7 @@ func (x *GetFeedbackRequest) String() string {
 func (*GetFeedbackRequest) ProtoMessage() {}
 
 func (x *GetFeedbackRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[23]
+	mi := &file_sale_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1633,7 +1688,7 @@ func (x *GetFeedbackRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFeedbackRequest.ProtoReflect.Descriptor instead.
 func (*GetFeedbackRequest) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{23}
+	return file_sale_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *GetFeedbackRequest) GetProductId() string {
@@ -1655,7 +1710,7 @@ type GetFeedbackResponse struct {
 func (x *GetFeedbackResponse) Reset() {
 	*x = GetFeedbackResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[24]
+		mi := &file_sale_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1668,7 +1723,7 @@ func (x *GetFeedbackResponse) String() string {
 func (*GetFeedbackResponse) ProtoMessage() {}
 
 func (x *GetFeedbackResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[24]
+	mi := &file_sale_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1681,7 +1736,7 @@ func (x *GetFeedbackResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFeedbackResponse.ProtoReflect.Descriptor instead.
 func (*GetFeedbackResponse) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{24}
+	return file_sale_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *GetFeedbackResponse) GetAverageRating() int64 {
@@ -1711,7 +1766,7 @@ type FeedbackOfProduct struct {
 func (x *FeedbackOfProduct) Reset() {
 	*x = FeedbackOfProduct{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[25]
+		mi := &file_sale_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1724,7 +1779,7 @@ func (x *FeedbackOfProduct) String() string {
 func (*FeedbackOfProduct) ProtoMessage() {}
 
 func (x *FeedbackOfProduct) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[25]
+	mi := &file_sale_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1737,7 +1792,7 @@ func (x *FeedbackOfProduct) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FeedbackOfProduct.ProtoReflect.Descriptor instead.
 func (*FeedbackOfProduct) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{25}
+	return file_sale_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *FeedbackOfProduct) GetUserId() string {
@@ -1774,7 +1829,7 @@ type FeedbackOfUser struct {
 func (x *FeedbackOfUser) Reset() {
 	*x = FeedbackOfUser{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[26]
+		mi := &file_sale_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1787,7 +1842,7 @@ func (x *FeedbackOfUser) String() string {
 func (*FeedbackOfUser) ProtoMessage() {}
 
 func (x *FeedbackOfUser) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[26]
+	mi := &file_sale_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1800,7 +1855,7 @@ func (x *FeedbackOfUser) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FeedbackOfUser.ProtoReflect.Descriptor instead.
 func (*FeedbackOfUser) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{26}
+	return file_sale_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *FeedbackOfUser) GetProductId() string {
@@ -1835,7 +1890,7 @@ type GetFeedbackOfUserRequest struct {
 func (x *GetFeedbackOfUserRequest) Reset() {
 	*x = GetFeedbackOfUserRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[27]
+		mi := &file_sale_proto_msgTypes[28]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1848,7 +1903,7 @@ func (x *GetFeedbackOfUserRequest) String() string {
 func (*GetFeedbackOfUserRequest) ProtoMessage() {}
 
 func (x *GetFeedbackOfUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[27]
+	mi := &file_sale_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1861,7 +1916,7 @@ func (x *GetFeedbackOfUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFeedbackOfUserRequest.ProtoReflect.Descriptor instead.
 func (*GetFeedbackOfUserRequest) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{27}
+	return file_sale_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *GetFeedbackOfUserRequest) GetUserId() string {
@@ -1882,7 +1937,7 @@ type GetFeedbackOfUserResponse struct {
 func (x *GetFeedbackOfUserResponse) Reset() {
 	*x = GetFeedbackOfUserResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[28]
+		mi := &file_sale_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1895,7 +1950,7 @@ func (x *GetFeedbackOfUserResponse) String() string {
 func (*GetFeedbackOfUserResponse) ProtoMessage() {}
 
 func (x *GetFeedbackOfUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[28]
+	mi := &file_sale_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1908,7 +1963,7 @@ func (x *GetFeedbackOfUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFeedbackOfUserResponse.ProtoReflect.Descriptor instead.
 func (*GetFeedbackOfUserResponse) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{28}
+	return file_sale_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *GetFeedbackOfUserResponse) GetFeedbacks() []*FeedbackOfUser {
@@ -1933,7 +1988,7 @@ type CreateBoughtRequest struct {
 func (x *CreateBoughtRequest) Reset() {
 	*x = CreateBoughtRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[29]
+		mi := &file_sale_proto_msgTypes[30]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1946,7 +2001,7 @@ func (x *CreateBoughtRequest) String() string {
 func (*CreateBoughtRequest) ProtoMessage() {}
 
 func (x *CreateBoughtRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[29]
+	mi := &file_sale_proto_msgTypes[30]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1959,7 +2014,7 @@ func (x *CreateBoughtRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateBoughtRequest.ProtoReflect.Descriptor instead.
 func (*CreateBoughtRequest) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{29}
+	return file_sale_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *CreateBoughtRequest) GetUserId() string {
@@ -2008,7 +2063,7 @@ type BoughtResponse struct {
 func (x *BoughtResponse) Reset() {
 	*x = BoughtResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[30]
+		mi := &file_sale_proto_msgTypes[31]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2021,7 +2076,7 @@ func (x *BoughtResponse) String() string {
 func (*BoughtResponse) ProtoMessage() {}
 
 func (x *BoughtResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[30]
+	mi := &file_sale_proto_msgTypes[31]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2034,7 +2089,7 @@ func (x *BoughtResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BoughtResponse.ProtoReflect.Descriptor instead.
 func (*BoughtResponse) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{30}
+	return file_sale_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *BoughtResponse) GetId() string {
@@ -2055,7 +2110,7 @@ type GetBoughtRequest struct {
 func (x *GetBoughtRequest) Reset() {
 	*x = GetBoughtRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[31]
+		mi := &file_sale_proto_msgTypes[32]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2068,7 +2123,7 @@ func (x *GetBoughtRequest) String() string {
 func (*GetBoughtRequest) ProtoMessage() {}
 
 func (x *GetBoughtRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[31]
+	mi := &file_sale_proto_msgTypes[32]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2081,7 +2136,7 @@ func (x *GetBoughtRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBoughtRequest.ProtoReflect.Descriptor instead.
 func (*GetBoughtRequest) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{31}
+	return file_sale_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *GetBoughtRequest) GetProductId() string {
@@ -2102,7 +2157,7 @@ type GetBoughtResponse struct {
 func (x *GetBoughtResponse) Reset() {
 	*x = GetBoughtResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[32]
+		mi := &file_sale_proto_msgTypes[33]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2115,7 +2170,7 @@ func (x *GetBoughtResponse) String() string {
 func (*GetBoughtResponse) ProtoMessage() {}
 
 func (x *GetBoughtResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[32]
+	mi := &file_sale_proto_msgTypes[33]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2128,7 +2183,7 @@ func (x *GetBoughtResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBoughtResponse.ProtoReflect.Descriptor instead.
 func (*GetBoughtResponse) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{32}
+	return file_sale_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *GetBoughtResponse) GetBoughts() []*BoughtOfProduct {
@@ -2152,7 +2207,7 @@ type BoughtOfProduct struct {
 func (x *BoughtOfProduct) Reset() {
 	*x = BoughtOfProduct{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[33]
+		mi := &file_sale_proto_msgTypes[34]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2165,7 +2220,7 @@ func (x *BoughtOfProduct) String() string {
 func (*BoughtOfProduct) ProtoMessage() {}
 
 func (x *BoughtOfProduct) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[33]
+	mi := &file_sale_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2178,7 +2233,7 @@ func (x *BoughtOfProduct) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BoughtOfProduct.ProtoReflect.Descriptor instead.
 func (*BoughtOfProduct) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{33}
+	return file_sale_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *BoughtOfProduct) GetUserId() string {
@@ -2223,7 +2278,7 @@ type BoughtOfUser struct {
 func (x *BoughtOfUser) Reset() {
 	*x = BoughtOfUser{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[34]
+		mi := &file_sale_proto_msgTypes[35]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2236,7 +2291,7 @@ func (x *BoughtOfUser) String() string {
 func (*BoughtOfUser) ProtoMessage() {}
 
 func (x *BoughtOfUser) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[34]
+	mi := &file_sale_proto_msgTypes[35]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2249,7 +2304,7 @@ func (x *BoughtOfUser) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BoughtOfUser.ProtoReflect.Descriptor instead.
 func (*BoughtOfUser) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{34}
+	return file_sale_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *BoughtOfUser) GetProductId() string {
@@ -2291,7 +2346,7 @@ type GetBoughtOfUserRequest struct {
 func (x *GetBoughtOfUserRequest) Reset() {
 	*x = GetBoughtOfUserRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[35]
+		mi := &file_sale_proto_msgTypes[36]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2304,7 +2359,7 @@ func (x *GetBoughtOfUserRequest) String() string {
 func (*GetBoughtOfUserRequest) ProtoMessage() {}
 
 func (x *GetBoughtOfUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[35]
+	mi := &file_sale_proto_msgTypes[36]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2317,7 +2372,7 @@ func (x *GetBoughtOfUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBoughtOfUserRequest.ProtoReflect.Descriptor instead.
 func (*GetBoughtOfUserRequest) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{35}
+	return file_sale_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *GetBoughtOfUserRequest) GetUserId() string {
@@ -2338,7 +2393,7 @@ type GetBoughtOfUserResponse struct {
 func (x *GetBoughtOfUserResponse) Reset() {
 	*x = GetBoughtOfUserResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sale_proto_msgTypes[36]
+		mi := &file_sale_proto_msgTypes[37]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2351,7 +2406,7 @@ func (x *GetBoughtOfUserResponse) String() string {
 func (*GetBoughtOfUserResponse) ProtoMessage() {}
 
 func (x *GetBoughtOfUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sale_proto_msgTypes[36]
+	mi := &file_sale_proto_msgTypes[37]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2364,7 +2419,7 @@ func (x *GetBoughtOfUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBoughtOfUserResponse.ProtoReflect.Descriptor instead.
 func (*GetBoughtOfUserResponse) Descriptor() ([]byte, []int) {
-	return file_sale_proto_rawDescGZIP(), []int{36}
+	return file_sale_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *GetBoughtOfUserResponse) GetBoughts() []*BoughtOfProduct {
@@ -2486,6 +2541,11 @@ var file_sale_proto_rawDesc = []byte{
 	0x64, 0x61, 0x74, 0x65, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x73, 0x74, 0x61, 0x72,
 	0x74, 0x44, 0x61, 0x74, 0x65, 0x12, 0x19, 0x0a, 0x08, 0x65, 0x6e, 0x64, 0x5f, 0x64, 0x61, 0x74,
 	0x65, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x65, 0x6e, 0x64, 0x44, 0x61, 0x74, 0x65,
+	0x22, 0x4e, 0x0a, 0x10, 0x41, 0x64, 0x64, 0x50, 0x68, 0x6f, 0x74, 0x6f, 0x73, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x5f,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63,
+	0x74, 0x49, 0x64, 0x12, 0x1b, 0x0a, 0x09, 0x70, 0x68, 0x6f, 0x74, 0x6f, 0x5f, 0x75, 0x72, 0x6c,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x68, 0x6f, 0x74, 0x6f, 0x55, 0x72, 0x6c,
 	0x22, 0x4f, 0x0a, 0x15, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x57, 0x69, 0x73, 0x68, 0x6c, 0x69,
 	0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65,
 	0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72,
@@ -2634,7 +2694,7 @@ var file_sale_proto_rawDesc = []byte{
 	0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2f, 0x0a, 0x07, 0x62, 0x6f,
 	0x75, 0x67, 0x68, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x73, 0x61,
 	0x6c, 0x65, 0x2e, 0x42, 0x6f, 0x75, 0x67, 0x68, 0x74, 0x4f, 0x66, 0x50, 0x72, 0x6f, 0x64, 0x75,
-	0x63, 0x74, 0x52, 0x07, 0x62, 0x6f, 0x75, 0x67, 0x68, 0x74, 0x73, 0x32, 0xdc, 0x02, 0x0a, 0x07,
+	0x63, 0x74, 0x52, 0x07, 0x62, 0x6f, 0x75, 0x67, 0x68, 0x74, 0x73, 0x32, 0x96, 0x03, 0x0a, 0x07,
 	0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x12, 0x3c, 0x0a, 0x0d, 0x43, 0x72, 0x65, 0x61, 0x74,
 	0x65, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x12, 0x1a, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e,
 	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x52, 0x65, 0x71,
@@ -2656,76 +2716,80 @@ var file_sale_proto_rawDesc = []byte{
 	0x49, 0x64, 0x1a, 0x0a, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x56, 0x6f, 0x69, 0x64, 0x12, 0x2a,
 	0x0a, 0x0b, 0x49, 0x73, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x4f, 0x6b, 0x12, 0x0f, 0x2e,
 	0x73, 0x61, 0x6c, 0x65, 0x2e, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x49, 0x64, 0x1a, 0x0a,
-	0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x56, 0x6f, 0x69, 0x64, 0x32, 0x95, 0x03, 0x0a, 0x07, 0x50,
-	0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x12, 0x42, 0x0a, 0x0d, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
-	0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x12, 0x1a, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x43,
-	0x72, 0x65, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x50, 0x72, 0x6f, 0x63, 0x65,
-	0x73, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x72, 0x0a, 0x1b, 0x47, 0x65,
-	0x74, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x4f, 0x66, 0x55, 0x73, 0x65, 0x72, 0x42, 0x79,
-	0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x49, 0x64, 0x12, 0x28, 0x2e, 0x73, 0x61, 0x6c, 0x65,
-	0x2e, 0x47, 0x65, 0x74, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x4f, 0x66, 0x55, 0x73, 0x65,
-	0x72, 0x42, 0x79, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x29, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x72,
+	0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x56, 0x6f, 0x69, 0x64, 0x12, 0x38, 0x0a, 0x12, 0x41, 0x64,
+	0x64, 0x50, 0x68, 0x6f, 0x74, 0x6f, 0x73, 0x54, 0x6f, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74,
+	0x12, 0x16, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x41, 0x64, 0x64, 0x50, 0x68, 0x6f, 0x74, 0x6f,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0a, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e,
+	0x56, 0x6f, 0x69, 0x64, 0x32, 0x95, 0x03, 0x0a, 0x07, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73,
+	0x12, 0x42, 0x0a, 0x0d, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73,
+	0x73, 0x12, 0x1a, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x50,
+	0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e,
+	0x73, 0x61, 0x6c, 0x65, 0x2e, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x72, 0x0a, 0x1b, 0x47, 0x65, 0x74, 0x50, 0x72, 0x6f, 0x63, 0x65,
+	0x73, 0x73, 0x4f, 0x66, 0x55, 0x73, 0x65, 0x72, 0x42, 0x79, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63,
+	0x74, 0x49, 0x64, 0x12, 0x28, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x72,
 	0x6f, 0x63, 0x65, 0x73, 0x73, 0x4f, 0x66, 0x55, 0x73, 0x65, 0x72, 0x42, 0x79, 0x50, 0x72, 0x6f,
-	0x64, 0x75, 0x63, 0x74, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x60,
-	0x0a, 0x15, 0x47, 0x65, 0x74, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x42, 0x79, 0x50, 0x72,
-	0x6f, 0x64, 0x75, 0x63, 0x74, 0x49, 0x64, 0x12, 0x22, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x47,
-	0x65, 0x74, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x42, 0x79, 0x50, 0x72, 0x6f, 0x64, 0x75,
-	0x63, 0x74, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x23, 0x2e, 0x73, 0x61,
-	0x6c, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x42, 0x79, 0x50,
-	0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x37, 0x0a, 0x0d, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73,
-	0x73, 0x12, 0x1a, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50,
-	0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0a, 0x2e,
-	0x73, 0x61, 0x6c, 0x65, 0x2e, 0x56, 0x6f, 0x69, 0x64, 0x12, 0x37, 0x0a, 0x0d, 0x43, 0x61, 0x6e,
-	0x63, 0x65, 0x6c, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x12, 0x1a, 0x2e, 0x73, 0x61, 0x6c,
-	0x65, 0x2e, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0a, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x56, 0x6f,
-	0x69, 0x64, 0x32, 0xd7, 0x01, 0x0a, 0x08, 0x57, 0x69, 0x73, 0x68, 0x6c, 0x69, 0x73, 0x74, 0x12,
-	0x45, 0x0a, 0x0e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x57, 0x69, 0x73, 0x68, 0x6c, 0x69, 0x73,
-	0x74, 0x12, 0x1b, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x57,
+	0x64, 0x75, 0x63, 0x74, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x29, 0x2e,
+	0x73, 0x61, 0x6c, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x4f,
+	0x66, 0x55, 0x73, 0x65, 0x72, 0x42, 0x79, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x49, 0x64,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x60, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x50,
+	0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x42, 0x79, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x49,
+	0x64, 0x12, 0x22, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x72, 0x6f, 0x63,
+	0x65, 0x73, 0x73, 0x42, 0x79, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x49, 0x64, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x23, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x47, 0x65, 0x74,
+	0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x42, 0x79, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74,
+	0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x37, 0x0a, 0x0d, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x12, 0x1a, 0x2e, 0x73, 0x61,
+	0x6c, 0x65, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0a, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x56,
+	0x6f, 0x69, 0x64, 0x12, 0x37, 0x0a, 0x0d, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x50, 0x72, 0x6f,
+	0x63, 0x65, 0x73, 0x73, 0x12, 0x1a, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x43, 0x61, 0x6e, 0x63,
+	0x65, 0x6c, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x0a, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x56, 0x6f, 0x69, 0x64, 0x32, 0xd7, 0x01, 0x0a,
+	0x08, 0x57, 0x69, 0x73, 0x68, 0x6c, 0x69, 0x73, 0x74, 0x12, 0x45, 0x0a, 0x0e, 0x43, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x57, 0x69, 0x73, 0x68, 0x6c, 0x69, 0x73, 0x74, 0x12, 0x1b, 0x2e, 0x73, 0x61,
+	0x6c, 0x65, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x57, 0x69, 0x73, 0x68, 0x6c, 0x69, 0x73,
+	0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e,
+	0x57, 0x69, 0x73, 0x68, 0x6c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x3f, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x57, 0x69, 0x73, 0x68, 0x6c, 0x69, 0x73, 0x74, 0x12,
+	0x18, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x57, 0x69, 0x73, 0x68, 0x6c, 0x69,
+	0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x73, 0x61, 0x6c, 0x65,
+	0x2e, 0x57, 0x69, 0x73, 0x68, 0x6c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x43, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x57, 0x69, 0x73, 0x68, 0x6c, 0x69, 0x73, 0x74,
+	0x42, 0x79, 0x49, 0x64, 0x12, 0x18, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x57,
 	0x69, 0x73, 0x68, 0x6c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16,
 	0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x57, 0x69, 0x73, 0x68, 0x6c, 0x69, 0x73, 0x74, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3f, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x57, 0x69, 0x73,
-	0x68, 0x6c, 0x69, 0x73, 0x74, 0x12, 0x18, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x47, 0x65, 0x74,
-	0x57, 0x69, 0x73, 0x68, 0x6c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x16, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x57, 0x69, 0x73, 0x68, 0x6c, 0x69, 0x73, 0x74, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x43, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x57, 0x69,
-	0x73, 0x68, 0x6c, 0x69, 0x73, 0x74, 0x42, 0x79, 0x49, 0x64, 0x12, 0x18, 0x2e, 0x73, 0x61, 0x6c,
-	0x65, 0x2e, 0x47, 0x65, 0x74, 0x57, 0x69, 0x73, 0x68, 0x6c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x57, 0x69, 0x73, 0x68,
-	0x6c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xe8, 0x01, 0x0a,
-	0x08, 0x46, 0x65, 0x65, 0x64, 0x62, 0x61, 0x63, 0x6b, 0x12, 0x45, 0x0a, 0x0e, 0x43, 0x72, 0x65,
-	0x61, 0x74, 0x65, 0x46, 0x65, 0x65, 0x64, 0x62, 0x61, 0x63, 0x6b, 0x12, 0x1b, 0x2e, 0x73, 0x61,
-	0x6c, 0x65, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x46, 0x65, 0x65, 0x64, 0x62, 0x61, 0x63,
-	0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e,
-	0x46, 0x65, 0x65, 0x64, 0x62, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x3f, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x46, 0x65, 0x65, 0x64, 0x62, 0x61, 0x63, 0x6b, 0x12,
-	0x18, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x46, 0x65, 0x65, 0x64, 0x62, 0x61,
-	0x63, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x73, 0x61, 0x6c, 0x65,
-	0x2e, 0x46, 0x65, 0x65, 0x64, 0x62, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x54, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x46, 0x65, 0x65, 0x64, 0x62, 0x61, 0x63, 0x6b,
-	0x4f, 0x66, 0x55, 0x73, 0x65, 0x72, 0x12, 0x1e, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x47, 0x65,
-	0x74, 0x46, 0x65, 0x65, 0x64, 0x62, 0x61, 0x63, 0x6b, 0x4f, 0x66, 0x55, 0x73, 0x65, 0x72, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1f, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x47, 0x65,
-	0x74, 0x46, 0x65, 0x65, 0x64, 0x62, 0x61, 0x63, 0x6b, 0x4f, 0x66, 0x55, 0x73, 0x65, 0x72, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xd4, 0x01, 0x0a, 0x06, 0x42, 0x6f, 0x75, 0x67,
-	0x68, 0x74, 0x12, 0x3f, 0x0a, 0x0c, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x6f, 0x75, 0x67,
-	0x68, 0x74, 0x12, 0x19, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
-	0x42, 0x6f, 0x75, 0x67, 0x68, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e,
-	0x73, 0x61, 0x6c, 0x65, 0x2e, 0x42, 0x6f, 0x75, 0x67, 0x68, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x39, 0x0a, 0x09, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x75, 0x67, 0x68, 0x74,
-	0x12, 0x16, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x75, 0x67, 0x68,
-	0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e,
-	0x42, 0x6f, 0x75, 0x67, 0x68, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4e,
-	0x0a, 0x0f, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x75, 0x67, 0x68, 0x74, 0x4f, 0x66, 0x55, 0x73, 0x65,
-	0x72, 0x12, 0x1c, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x75, 0x67,
-	0x68, 0x74, 0x4f, 0x66, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x1d, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x75, 0x67, 0x68, 0x74,
-	0x4f, 0x66, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x0f,
-	0x5a, 0x0d, 0x67, 0x65, 0x6e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x73, 0x61, 0x6c, 0x65, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xe8, 0x01, 0x0a, 0x08, 0x46, 0x65, 0x65, 0x64, 0x62,
+	0x61, 0x63, 0x6b, 0x12, 0x45, 0x0a, 0x0e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x46, 0x65, 0x65,
+	0x64, 0x62, 0x61, 0x63, 0x6b, 0x12, 0x1b, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x43, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x46, 0x65, 0x65, 0x64, 0x62, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x16, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x46, 0x65, 0x65, 0x64, 0x62, 0x61,
+	0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3f, 0x0a, 0x0b, 0x47, 0x65,
+	0x74, 0x46, 0x65, 0x65, 0x64, 0x62, 0x61, 0x63, 0x6b, 0x12, 0x18, 0x2e, 0x73, 0x61, 0x6c, 0x65,
+	0x2e, 0x47, 0x65, 0x74, 0x46, 0x65, 0x65, 0x64, 0x62, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x46, 0x65, 0x65, 0x64, 0x62,
+	0x61, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x54, 0x0a, 0x11, 0x47,
+	0x65, 0x74, 0x46, 0x65, 0x65, 0x64, 0x62, 0x61, 0x63, 0x6b, 0x4f, 0x66, 0x55, 0x73, 0x65, 0x72,
+	0x12, 0x1e, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x46, 0x65, 0x65, 0x64, 0x62,
+	0x61, 0x63, 0x6b, 0x4f, 0x66, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x1f, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x46, 0x65, 0x65, 0x64, 0x62,
+	0x61, 0x63, 0x6b, 0x4f, 0x66, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x32, 0xd4, 0x01, 0x0a, 0x06, 0x42, 0x6f, 0x75, 0x67, 0x68, 0x74, 0x12, 0x3f, 0x0a, 0x0c,
+	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x6f, 0x75, 0x67, 0x68, 0x74, 0x12, 0x19, 0x2e, 0x73,
+	0x61, 0x6c, 0x65, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x6f, 0x75, 0x67, 0x68, 0x74,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x42,
+	0x6f, 0x75, 0x67, 0x68, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x39, 0x0a,
+	0x09, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x75, 0x67, 0x68, 0x74, 0x12, 0x16, 0x2e, 0x73, 0x61, 0x6c,
+	0x65, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x75, 0x67, 0x68, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x14, 0x2e, 0x73, 0x61, 0x6c, 0x65, 0x2e, 0x42, 0x6f, 0x75, 0x67, 0x68, 0x74,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4e, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x42,
+	0x6f, 0x75, 0x67, 0x68, 0x74, 0x4f, 0x66, 0x55, 0x73, 0x65, 0x72, 0x12, 0x1c, 0x2e, 0x73, 0x61,
+	0x6c, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x75, 0x67, 0x68, 0x74, 0x4f, 0x66, 0x55, 0x73,
+	0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x73, 0x61, 0x6c, 0x65,
+	0x2e, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x75, 0x67, 0x68, 0x74, 0x4f, 0x66, 0x55, 0x73, 0x65, 0x72,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x0f, 0x5a, 0x0d, 0x67, 0x65, 0x6e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x73, 0x61, 0x6c, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x33,
 }
 
 var (
@@ -2740,7 +2804,7 @@ func file_sale_proto_rawDescGZIP() []byte {
 	return file_sale_proto_rawDescData
 }
 
-var file_sale_proto_msgTypes = make([]protoimpl.MessageInfo, 37)
+var file_sale_proto_msgTypes = make([]protoimpl.MessageInfo, 38)
 var file_sale_proto_goTypes = []interface{}{
 	(*Void)(nil),                                // 0: sale.Void
 	(*Products)(nil),                            // 1: sale.Products
@@ -2750,86 +2814,89 @@ var file_sale_proto_goTypes = []interface{}{
 	(*GetProductResponse)(nil),                  // 5: sale.GetProductResponse
 	(*GetProductByIdResponse)(nil),              // 6: sale.GetProductByIdResponse
 	(*UpdateProductRequest)(nil),                // 7: sale.UpdateProductRequest
-	(*CreateWishlistRequest)(nil),               // 8: sale.CreateWishlistRequest
-	(*WishlistResponse)(nil),                    // 9: sale.WishlistResponse
-	(*GetWishlistRequest)(nil),                  // 10: sale.GetWishlistRequest
-	(*GetWishlistResponse)(nil),                 // 11: sale.GetWishlistResponse
-	(*Processes)(nil),                           // 12: sale.Processes
-	(*CreateProcessRequest)(nil),                // 13: sale.CreateProcessRequest
-	(*ProcessResponse)(nil),                     // 14: sale.ProcessResponse
-	(*GetProcessOfUserByProductIdRequest)(nil),  // 15: sale.GetProcessOfUserByProductIdRequest
-	(*GetProcessOfUserByProductIdResponse)(nil), // 16: sale.GetProcessOfUserByProductIdResponse
-	(*GetProcessByProductIdRequest)(nil),        // 17: sale.GetProcessByProductIdRequest
-	(*GetProcessByProductIdResponse)(nil),       // 18: sale.GetProcessByProductIdResponse
-	(*UpdateProcessRequest)(nil),                // 19: sale.UpdateProcessRequest
-	(*CancelProcessRequest)(nil),                // 20: sale.CancelProcessRequest
-	(*CreateFeedbackRequest)(nil),               // 21: sale.CreateFeedbackRequest
-	(*FeedbackResponse)(nil),                    // 22: sale.FeedbackResponse
-	(*GetFeedbackRequest)(nil),                  // 23: sale.GetFeedbackRequest
-	(*GetFeedbackResponse)(nil),                 // 24: sale.GetFeedbackResponse
-	(*FeedbackOfProduct)(nil),                   // 25: sale.FeedbackOfProduct
-	(*FeedbackOfUser)(nil),                      // 26: sale.FeedbackOfUser
-	(*GetFeedbackOfUserRequest)(nil),            // 27: sale.GetFeedbackOfUserRequest
-	(*GetFeedbackOfUserResponse)(nil),           // 28: sale.GetFeedbackOfUserResponse
-	(*CreateBoughtRequest)(nil),                 // 29: sale.CreateBoughtRequest
-	(*BoughtResponse)(nil),                      // 30: sale.BoughtResponse
-	(*GetBoughtRequest)(nil),                    // 31: sale.GetBoughtRequest
-	(*GetBoughtResponse)(nil),                   // 32: sale.GetBoughtResponse
-	(*BoughtOfProduct)(nil),                     // 33: sale.BoughtOfProduct
-	(*BoughtOfUser)(nil),                        // 34: sale.BoughtOfUser
-	(*GetBoughtOfUserRequest)(nil),              // 35: sale.GetBoughtOfUserRequest
-	(*GetBoughtOfUserResponse)(nil),             // 36: sale.GetBoughtOfUserResponse
+	(*AddPhotosRequest)(nil),                    // 8: sale.AddPhotosRequest
+	(*CreateWishlistRequest)(nil),               // 9: sale.CreateWishlistRequest
+	(*WishlistResponse)(nil),                    // 10: sale.WishlistResponse
+	(*GetWishlistRequest)(nil),                  // 11: sale.GetWishlistRequest
+	(*GetWishlistResponse)(nil),                 // 12: sale.GetWishlistResponse
+	(*Processes)(nil),                           // 13: sale.Processes
+	(*CreateProcessRequest)(nil),                // 14: sale.CreateProcessRequest
+	(*ProcessResponse)(nil),                     // 15: sale.ProcessResponse
+	(*GetProcessOfUserByProductIdRequest)(nil),  // 16: sale.GetProcessOfUserByProductIdRequest
+	(*GetProcessOfUserByProductIdResponse)(nil), // 17: sale.GetProcessOfUserByProductIdResponse
+	(*GetProcessByProductIdRequest)(nil),        // 18: sale.GetProcessByProductIdRequest
+	(*GetProcessByProductIdResponse)(nil),       // 19: sale.GetProcessByProductIdResponse
+	(*UpdateProcessRequest)(nil),                // 20: sale.UpdateProcessRequest
+	(*CancelProcessRequest)(nil),                // 21: sale.CancelProcessRequest
+	(*CreateFeedbackRequest)(nil),               // 22: sale.CreateFeedbackRequest
+	(*FeedbackResponse)(nil),                    // 23: sale.FeedbackResponse
+	(*GetFeedbackRequest)(nil),                  // 24: sale.GetFeedbackRequest
+	(*GetFeedbackResponse)(nil),                 // 25: sale.GetFeedbackResponse
+	(*FeedbackOfProduct)(nil),                   // 26: sale.FeedbackOfProduct
+	(*FeedbackOfUser)(nil),                      // 27: sale.FeedbackOfUser
+	(*GetFeedbackOfUserRequest)(nil),            // 28: sale.GetFeedbackOfUserRequest
+	(*GetFeedbackOfUserResponse)(nil),           // 29: sale.GetFeedbackOfUserResponse
+	(*CreateBoughtRequest)(nil),                 // 30: sale.CreateBoughtRequest
+	(*BoughtResponse)(nil),                      // 31: sale.BoughtResponse
+	(*GetBoughtRequest)(nil),                    // 32: sale.GetBoughtRequest
+	(*GetBoughtResponse)(nil),                   // 33: sale.GetBoughtResponse
+	(*BoughtOfProduct)(nil),                     // 34: sale.BoughtOfProduct
+	(*BoughtOfUser)(nil),                        // 35: sale.BoughtOfUser
+	(*GetBoughtOfUserRequest)(nil),              // 36: sale.GetBoughtOfUserRequest
+	(*GetBoughtOfUserResponse)(nil),             // 37: sale.GetBoughtOfUserResponse
 }
 var file_sale_proto_depIdxs = []int32{
 	1,  // 0: sale.GetProductResponse.product:type_name -> sale.Products
-	12, // 1: sale.GetProcessOfUserByProductIdResponse.processes:type_name -> sale.Processes
-	12, // 2: sale.GetProcessByProductIdResponse.processes:type_name -> sale.Processes
-	25, // 3: sale.GetFeedbackResponse.feedbacks:type_name -> sale.FeedbackOfProduct
-	26, // 4: sale.GetFeedbackOfUserResponse.feedbacks:type_name -> sale.FeedbackOfUser
-	33, // 5: sale.GetBoughtResponse.boughts:type_name -> sale.BoughtOfProduct
-	33, // 6: sale.GetBoughtOfUserResponse.boughts:type_name -> sale.BoughtOfProduct
+	13, // 1: sale.GetProcessOfUserByProductIdResponse.processes:type_name -> sale.Processes
+	13, // 2: sale.GetProcessByProductIdResponse.processes:type_name -> sale.Processes
+	26, // 3: sale.GetFeedbackResponse.feedbacks:type_name -> sale.FeedbackOfProduct
+	27, // 4: sale.GetFeedbackOfUserResponse.feedbacks:type_name -> sale.FeedbackOfUser
+	34, // 5: sale.GetBoughtResponse.boughts:type_name -> sale.BoughtOfProduct
+	34, // 6: sale.GetBoughtOfUserResponse.boughts:type_name -> sale.BoughtOfProduct
 	2,  // 7: sale.Product.CreateProduct:input_type -> sale.CreateProductRequest
 	4,  // 8: sale.Product.GetProduct:input_type -> sale.GetProductRequest
 	3,  // 9: sale.Product.GetProductById:input_type -> sale.ProductId
 	7,  // 10: sale.Product.UpdateProduct:input_type -> sale.UpdateProductRequest
 	3,  // 11: sale.Product.DeleteProduct:input_type -> sale.ProductId
 	3,  // 12: sale.Product.IsProductOk:input_type -> sale.ProductId
-	13, // 13: sale.Process.CreateProcess:input_type -> sale.CreateProcessRequest
-	15, // 14: sale.Process.GetProcessOfUserByProductId:input_type -> sale.GetProcessOfUserByProductIdRequest
-	17, // 15: sale.Process.GetProcessByProductId:input_type -> sale.GetProcessByProductIdRequest
-	19, // 16: sale.Process.UpdateProcess:input_type -> sale.UpdateProcessRequest
-	20, // 17: sale.Process.CancelProcess:input_type -> sale.CancelProcessRequest
-	8,  // 18: sale.Wishlist.CreateWishlist:input_type -> sale.CreateWishlistRequest
-	10, // 19: sale.Wishlist.GetWishlist:input_type -> sale.GetWishlistRequest
-	10, // 20: sale.Wishlist.GetWishlistById:input_type -> sale.GetWishlistRequest
-	21, // 21: sale.Feedback.CreateFeedback:input_type -> sale.CreateFeedbackRequest
-	23, // 22: sale.Feedback.GetFeedback:input_type -> sale.GetFeedbackRequest
-	27, // 23: sale.Feedback.GetFeedbackOfUser:input_type -> sale.GetFeedbackOfUserRequest
-	29, // 24: sale.Bought.CreateBought:input_type -> sale.CreateBoughtRequest
-	31, // 25: sale.Bought.GetBought:input_type -> sale.GetBoughtRequest
-	35, // 26: sale.Bought.GetBoughtOfUser:input_type -> sale.GetBoughtOfUserRequest
-	3,  // 27: sale.Product.CreateProduct:output_type -> sale.ProductId
-	5,  // 28: sale.Product.GetProduct:output_type -> sale.GetProductResponse
-	6,  // 29: sale.Product.GetProductById:output_type -> sale.GetProductByIdResponse
-	0,  // 30: sale.Product.UpdateProduct:output_type -> sale.Void
-	0,  // 31: sale.Product.DeleteProduct:output_type -> sale.Void
-	0,  // 32: sale.Product.IsProductOk:output_type -> sale.Void
-	14, // 33: sale.Process.CreateProcess:output_type -> sale.ProcessResponse
-	16, // 34: sale.Process.GetProcessOfUserByProductId:output_type -> sale.GetProcessOfUserByProductIdResponse
-	18, // 35: sale.Process.GetProcessByProductId:output_type -> sale.GetProcessByProductIdResponse
-	0,  // 36: sale.Process.UpdateProcess:output_type -> sale.Void
-	0,  // 37: sale.Process.CancelProcess:output_type -> sale.Void
-	9,  // 38: sale.Wishlist.CreateWishlist:output_type -> sale.WishlistResponse
-	9,  // 39: sale.Wishlist.GetWishlist:output_type -> sale.WishlistResponse
-	9,  // 40: sale.Wishlist.GetWishlistById:output_type -> sale.WishlistResponse
-	22, // 41: sale.Feedback.CreateFeedback:output_type -> sale.FeedbackResponse
-	22, // 42: sale.Feedback.GetFeedback:output_type -> sale.FeedbackResponse
-	28, // 43: sale.Feedback.GetFeedbackOfUser:output_type -> sale.GetFeedbackOfUserResponse
-	30, // 44: sale.Bought.CreateBought:output_type -> sale.BoughtResponse
-	30, // 45: sale.Bought.GetBought:output_type -> sale.BoughtResponse
-	36, // 46: sale.Bought.GetBoughtOfUser:output_type -> sale.GetBoughtOfUserResponse
-	27, // [27:47] is the sub-list for method output_type
-	7,  // [7:27] is the sub-list for method input_type
+	8,  // 13: sale.Product.AddPhotosToProduct:input_type -> sale.AddPhotosRequest
+	14, // 14: sale.Process.CreateProcess:input_type -> sale.CreateProcessRequest
+	16, // 15: sale.Process.GetProcessOfUserByProductId:input_type -> sale.GetProcessOfUserByProductIdRequest
+	18, // 16: sale.Process.GetProcessByProductId:input_type -> sale.GetProcessByProductIdRequest
+	20, // 17: sale.Process.UpdateProcess:input_type -> sale.UpdateProcessRequest
+	21, // 18: sale.Process.CancelProcess:input_type -> sale.CancelProcessRequest
+	9,  // 19: sale.Wishlist.CreateWishlist:input_type -> sale.CreateWishlistRequest
+	11, // 20: sale.Wishlist.GetWishlist:input_type -> sale.GetWishlistRequest
+	11, // 21: sale.Wishlist.GetWishlistById:input_type -> sale.GetWishlistRequest
+	22, // 22: sale.Feedback.CreateFeedback:input_type -> sale.CreateFeedbackRequest
+	24, // 23: sale.Feedback.GetFeedback:input_type -> sale.GetFeedbackRequest
+	28, // 24: sale.Feedback.GetFeedbackOfUser:input_type -> sale.GetFeedbackOfUserRequest
+	30, // 25: sale.Bought.CreateBought:input_type -> sale.CreateBoughtRequest
+	32, // 26: sale.Bought.GetBought:input_type -> sale.GetBoughtRequest
+	36, // 27: sale.Bought.GetBoughtOfUser:input_type -> sale.GetBoughtOfUserRequest
+	3,  // 28: sale.Product.CreateProduct:output_type -> sale.ProductId
+	5,  // 29: sale.Product.GetProduct:output_type -> sale.GetProductResponse
+	6,  // 30: sale.Product.GetProductById:output_type -> sale.GetProductByIdResponse
+	0,  // 31: sale.Product.UpdateProduct:output_type -> sale.Void
+	0,  // 32: sale.Product.DeleteProduct:output_type -> sale.Void
+	0,  // 33: sale.Product.IsProductOk:output_type -> sale.Void
+	0,  // 34: sale.Product.AddPhotosToProduct:output_type -> sale.Void
+	15, // 35: sale.Process.CreateProcess:output_type -> sale.ProcessResponse
+	17, // 36: sale.Process.GetProcessOfUserByProductId:output_type -> sale.GetProcessOfUserByProductIdResponse
+	19, // 37: sale.Process.GetProcessByProductId:output_type -> sale.GetProcessByProductIdResponse
+	0,  // 38: sale.Process.UpdateProcess:output_type -> sale.Void
+	0,  // 39: sale.Process.CancelProcess:output_type -> sale.Void
+	10, // 40: sale.Wishlist.CreateWishlist:output_type -> sale.WishlistResponse
+	10, // 41: sale.Wishlist.GetWishlist:output_type -> sale.WishlistResponse
+	10, // 42: sale.Wishlist.GetWishlistById:output_type -> sale.WishlistResponse
+	23, // 43: sale.Feedback.CreateFeedback:output_type -> sale.FeedbackResponse
+	23, // 44: sale.Feedback.GetFeedback:output_type -> sale.FeedbackResponse
+	29, // 45: sale.Feedback.GetFeedbackOfUser:output_type -> sale.GetFeedbackOfUserResponse
+	31, // 46: sale.Bought.CreateBought:output_type -> sale.BoughtResponse
+	31, // 47: sale.Bought.GetBought:output_type -> sale.BoughtResponse
+	37, // 48: sale.Bought.GetBoughtOfUser:output_type -> sale.GetBoughtOfUserResponse
+	28, // [28:49] is the sub-list for method output_type
+	7,  // [7:28] is the sub-list for method input_type
 	7,  // [7:7] is the sub-list for extension type_name
 	7,  // [7:7] is the sub-list for extension extendee
 	0,  // [0:7] is the sub-list for field type_name
@@ -2938,7 +3005,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateWishlistRequest); i {
+			switch v := v.(*AddPhotosRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2950,7 +3017,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*WishlistResponse); i {
+			switch v := v.(*CreateWishlistRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2962,7 +3029,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetWishlistRequest); i {
+			switch v := v.(*WishlistResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2974,7 +3041,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetWishlistResponse); i {
+			switch v := v.(*GetWishlistRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2986,7 +3053,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Processes); i {
+			switch v := v.(*GetWishlistResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2998,7 +3065,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateProcessRequest); i {
+			switch v := v.(*Processes); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3010,7 +3077,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ProcessResponse); i {
+			switch v := v.(*CreateProcessRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3022,7 +3089,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetProcessOfUserByProductIdRequest); i {
+			switch v := v.(*ProcessResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3034,7 +3101,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetProcessOfUserByProductIdResponse); i {
+			switch v := v.(*GetProcessOfUserByProductIdRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3046,7 +3113,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetProcessByProductIdRequest); i {
+			switch v := v.(*GetProcessOfUserByProductIdResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3058,7 +3125,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetProcessByProductIdResponse); i {
+			switch v := v.(*GetProcessByProductIdRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3070,7 +3137,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateProcessRequest); i {
+			switch v := v.(*GetProcessByProductIdResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3082,7 +3149,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CancelProcessRequest); i {
+			switch v := v.(*UpdateProcessRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3094,7 +3161,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateFeedbackRequest); i {
+			switch v := v.(*CancelProcessRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3106,7 +3173,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FeedbackResponse); i {
+			switch v := v.(*CreateFeedbackRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3118,7 +3185,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetFeedbackRequest); i {
+			switch v := v.(*FeedbackResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3130,7 +3197,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetFeedbackResponse); i {
+			switch v := v.(*GetFeedbackRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3142,7 +3209,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FeedbackOfProduct); i {
+			switch v := v.(*GetFeedbackResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3154,7 +3221,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FeedbackOfUser); i {
+			switch v := v.(*FeedbackOfProduct); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3166,7 +3233,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetFeedbackOfUserRequest); i {
+			switch v := v.(*FeedbackOfUser); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3178,7 +3245,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetFeedbackOfUserResponse); i {
+			switch v := v.(*GetFeedbackOfUserRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3190,7 +3257,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateBoughtRequest); i {
+			switch v := v.(*GetFeedbackOfUserResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3202,7 +3269,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BoughtResponse); i {
+			switch v := v.(*CreateBoughtRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3214,7 +3281,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetBoughtRequest); i {
+			switch v := v.(*BoughtResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3226,7 +3293,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetBoughtResponse); i {
+			switch v := v.(*GetBoughtRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3238,7 +3305,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BoughtOfProduct); i {
+			switch v := v.(*GetBoughtResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3250,7 +3317,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BoughtOfUser); i {
+			switch v := v.(*BoughtOfProduct); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3262,7 +3329,7 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetBoughtOfUserRequest); i {
+			switch v := v.(*BoughtOfUser); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3274,6 +3341,18 @@ func file_sale_proto_init() {
 			}
 		}
 		file_sale_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetBoughtOfUserRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_sale_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetBoughtOfUserResponse); i {
 			case 0:
 				return &v.state
@@ -3292,7 +3371,7 @@ func file_sale_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_sale_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   37,
+			NumMessages:   38,
 			NumExtensions: 0,
 			NumServices:   5,
 		},
