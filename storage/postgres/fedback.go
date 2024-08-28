@@ -31,7 +31,7 @@ func (repo *FeedbackRepository) CreateFeedback(ctx context.Context, req *pb.Crea
 	return &res, nil
 }
 
-func (repo *FeedbackRepository) GetFeedback(request *pb.GetFeedbackRequest) (*pb.GetFeedbackResponse, error) {
+func (repo *FeedbackRepository) GetFeedback(ctx context.Context,request *pb.GetFeedbackRequest) (*pb.GetFeedbackResponse, error) {
 	var response pb.GetFeedbackResponse
 	query := `SELECT user_id, rating, description
 			  FROM feedback
@@ -69,7 +69,7 @@ func (repo *FeedbackRepository) GetFeedback(request *pb.GetFeedbackRequest) (*pb
 	return &response, nil
 }
 
-func (repo *FeedbackRepository) GetFeedbackOfUser(request *pb.GetFeedbackOfUserRequest) (*pb.GetFeedbackOfUserResponse, error) {
+func (repo *FeedbackRepository) GetFeedbackOfUser( ctx context.Context, request *pb.GetFeedbackOfUserRequest) (*pb.GetFeedbackOfUserResponse, error) {
 	var response pb.GetFeedbackOfUserResponse
 	query := `SELECT product_id, rating, description
 			  FROM feedback
