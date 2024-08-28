@@ -47,6 +47,7 @@ func (r *ProductsRepo) CreateProduct(ctx context.Context, req *pb.CreateProductR
 		{Key: "start_date", Value: startDate},
 		{Key: "end_date", Value: endDate},
 		{Key: "seller_id", Value: req.SellerId},
+		{Key: "photos", Value: []string{}},
 	}
 
 	result, err := r.Coll.InsertOne(ctx, product)
@@ -75,9 +76,6 @@ func (r *ProductsRepo) GetProduct(ctx context.Context, req *pb.GetProductRequest
 	}
 	if req.Stock > 0 {
 		filter["stock"] = bson.M{"$gte": req.Stock}
-	}
-	if req.LimitOfProduct > 0 {
-		filter["limit_of_product"] = bson.M{"$gte": req.LimitOfProduct}
 	}
 	if req.PriceWithStock > 0 {
 		filter["price_with_stock"] = bson.M{"$gte": req.PriceWithStock}
@@ -128,6 +126,7 @@ func (r *ProductsRepo) GetProduct(ctx context.Context, req *pb.GetProductRequest
 			StartDate:      product.StartDate.Format("2006-01-02"),
 			EndDate:        product.EndDate.Format("2006-01-02"),
 			SellerId:       product.SellerID,
+			Photos:         product.Photos,
 		})
 	}
 

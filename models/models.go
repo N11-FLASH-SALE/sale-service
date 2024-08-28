@@ -19,4 +19,5 @@ type Product struct {
 	StartDate      time.Time          `bson:"start_date"`
 	EndDate        time.Time          `bson:"end_date"`
 	SellerID       string             `bson:"seller_id"`
+	Photos         []string           `bson:"photos"`
 }
