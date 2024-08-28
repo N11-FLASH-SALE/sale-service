@@ -31,5 +31,5 @@ CREATE TABLE IF NOT EXISTS bought(
     product_id VARCHAR NOT NULL,
     amount integer NOT NULL,
     card_number VARCHAR(16) NOT NULL,
-    amount_of_money integer NOT NULL
+    amount_of_money DOUBLE PRECISION NOT NULL
 );
