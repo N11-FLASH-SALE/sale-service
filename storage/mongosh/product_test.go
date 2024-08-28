@@ -28,3 +28,85 @@ func TestCreateProduct(t *testing.T) {
 	}
 	t.Log("Product created with ID:", id.Id)
 }
+
+func TestGetProduct(t *testing.T) {
+	db, err := Connect(context.Background())
+	if err != nil {
+		t.Fatal(err)
+	}
+	repo := NewProductsRepository(db)
+	req := &pb.GetProductRequest{
+		MaxPrice: 1000,
+	}
+	resp, err := repo.GetProduct(context.Background(), req)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("Product retrieved:", resp)
+}
+
+func TestGetProductById(t *testing.T) {
+	db, err := Connect(context.Background())
+	if err != nil {
+		t.Fatal(err)
+	}
+	repo := NewProductsRepository(db)
+	req := &pb.ProductId{
+		Id: "66cf7076533ee98a300b9020",
+	}
+	resp, err := repo.GetProductById(context.Background(), req)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("Product retrieved by ID:", resp)
+}
+
+func TestUpdateProduct(t *testing.T) {
+	db, err := Connect(context.Background())
+	if err != nil {
+		t.Fatal(err)
+	}
+	repo := NewProductsRepository(db)
+	req := &pb.UpdateProductRequest{
+		Id:      "66cf7076533ee98a300b9020",
+		Color:   []string{"red", "yellow"},
+		EndDate: "2024-08-29",
+	}
+	err = repo.UpdateProduct(context.Background(), req)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("Product updated successfully")
+}
+
+func TestDeleteProduct(t *testing.T) {
+	db, err := Connect(context.Background())
+	if err != nil {
+		t.Fatal(err)
+	}
+	repo := NewProductsRepository(db)
+	req := &pb.ProductId{
+		Id: "66cf7055930e6a2ff0f197a7",
+	}
+	err = repo.DeleteProduct(context.Background(), req)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("Product deleted successfully")
+}
+
+func TestIsProductOk(t *testing.T) {
+	db, err := Connect(context.Background())
+	if err != nil {
+		t.Fatal(err)
+	}
+	repo := NewProductsRepository(db)
+	req := &pb.ProductId{
+		Id: "66cf7076533ee98a300b9020",
+	}
+	err = repo.IsProductOk(context.Background(), req)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("Product is OK")
+}
