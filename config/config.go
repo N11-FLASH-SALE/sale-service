@@ -60,8 +60,8 @@ func Load() *Config {
 			RDB_PASSWORD: cast.ToString(coalesce("RDB_PASSWORD", "")),
 		},
 		Mongo: MongoDBConfig{
-			MDB_ADDRESS: cast.ToString(coalesce("MDB_ADDRESS", "localhost:27017")),
-			MDB_NAME:    cast.ToString(coalesce("MDB_NAME", "mydatabase")),
+			MDB_ADDRESS: cast.ToString(coalesce("MDB_ADDRESS", "mongodb://localhost:27017")),
+			MDB_NAME:    cast.ToString(coalesce("MDB_NAME", "test")),
 		},
 	}
 }
