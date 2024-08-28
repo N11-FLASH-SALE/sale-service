@@ -24,7 +24,7 @@ func NewProductsRepository(db *mongo.Database) *ProductsRepo {
 func (r *ProductsRepo) CreateProduct(ctx context.Context, req *pb.CreateProductRequest) (*pb.ProductId, error) {
 
 	stockPercentage := float64(req.Stock) / 100
-	priceWithStock := req.Price - req.Price*stockPercentage
+	priceWithStock := req.PriceWithoutStock - req.PriceWithoutStock*stockPercentage
 
 	startDate, err := time.Parse("2006-01-02", req.GetStartDate())
 	if err != nil {
@@ -38,9 +38,9 @@ func (r *ProductsRepo) CreateProduct(ctx context.Context, req *pb.CreateProductR
 	product := bson.D{
 		{Key: "name", Value: req.Name},
 		{Key: "description", Value: req.Description},
-		{Key: "price", Value: req.Price},
+		{Key: "price", Value: priceWithStock},
 		{Key: "stock", Value: req.Stock},
-		{Key: "price_with_stock", Value: priceWithStock},
+		{Key: "price_without_stock", Value: req.PriceWithoutStock},
 		{Key: "limit_of_product", Value: req.LimitOfProduct},
 		{Key: "size", Value: req.Size},
 		{Key: "color", Value: req.Color},
@@ -77,9 +77,6 @@ func (r *ProductsRepo) GetProduct(ctx context.Context, req *pb.GetProductRequest
 	if req.Stock > 0 {
 		filter["stock"] = bson.M{"$gte": req.Stock}
 	}
-	if req.PriceWithStock > 0 {
-		filter["price_with_stock"] = bson.M{"$gte": req.PriceWithStock}
-	}
 	if req.SellerId != "" {
 		filter["seller_id"] = req.SellerId
 	}
@@ -114,19 +111,19 @@ func (r *ProductsRepo) GetProduct(ctx context.Context, req *pb.GetProductRequest
 	var pbProducts []*pb.Products
 	for _, product := range products {
 		pbProducts = append(pbProducts, &pb.Products{
-			Id:             product.ID.Hex(),
-			Name:           product.Name,
-			Description:    product.Description,
-			Price:          product.Price,
-			Stock:          product.Stock,
-			PriceWithStock: product.PriceWithStock,
-			LimitOfProduct: product.LimitOfProduct,
-			Size:           product.Size,
-			Color:          product.Color,
-			StartDate:      product.StartDate.Format("2006-01-02"),
-			EndDate:        product.EndDate.Format("2006-01-02"),
-			SellerId:       product.SellerID,
-			Photos:         product.Photos,
+			Id:                product.ID.Hex(),
+			Name:              product.Name,
+			Description:       product.Description,
+			Price:             product.Price,
+			Stock:             product.Stock,
+			PriceWithoutStock: product.PriceWithOutStock,
+			LimitOfProduct:    product.LimitOfProduct,
+			Size:              product.Size,
+			Color:             product.Color,
+			StartDate:         product.StartDate.Format("2006-01-02"),
+			EndDate:           product.EndDate.Format("2006-01-02"),
+			SellerId:          product.SellerID,
+			Photos:            product.Photos,
 		})
 	}
 
