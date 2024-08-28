@@ -29,6 +29,7 @@ type ProductClient interface {
 	DeleteProduct(ctx context.Context, in *ProductId, opts ...grpc.CallOption) (*Void, error)
 	IsProductOk(ctx context.Context, in *ProductId, opts ...grpc.CallOption) (*Void, error)
 	AddPhotosToProduct(ctx context.Context, in *AddPhotosRequest, opts ...grpc.CallOption) (*Void, error)
+	DeletePhotosFromProduct(ctx context.Context, in *DeletePhotosRequest, opts ...grpc.CallOption) (*Void, error)
 }
 
 type productClient struct {
@@ -102,6 +103,15 @@ func (c *productClient) AddPhotosToProduct(ctx context.Context, in *AddPhotosReq
 	return out, nil
 }
 
+func (c *productClient) DeletePhotosFromProduct(ctx context.Context, in *DeletePhotosRequest, opts ...grpc.CallOption) (*Void, error) {
+	out := new(Void)
+	err := c.cc.Invoke(ctx, "/sale.Product/DeletePhotosFromProduct", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProductServer is the server API for Product service.
 // All implementations must embed UnimplementedProductServer
 // for forward compatibility
@@ -113,6 +123,7 @@ type ProductServer interface {
 	DeleteProduct(context.Context, *ProductId) (*Void, error)
 	IsProductOk(context.Context, *ProductId) (*Void, error)
 	AddPhotosToProduct(context.Context, *AddPhotosRequest) (*Void, error)
+	DeletePhotosFromProduct(context.Context, *DeletePhotosRequest) (*Void, error)
 	mustEmbedUnimplementedProductServer()
 }
 
@@ -140,6 +151,9 @@ func (UnimplementedProductServer) IsProductOk(context.Context, *ProductId) (*Voi
 }
 func (UnimplementedProductServer) AddPhotosToProduct(context.Context, *AddPhotosRequest) (*Void, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddPhotosToProduct not implemented")
+}
+func (UnimplementedProductServer) DeletePhotosFromProduct(context.Context, *DeletePhotosRequest) (*Void, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeletePhotosFromProduct not implemented")
 }
 func (UnimplementedProductServer) mustEmbedUnimplementedProductServer() {}
 
@@ -280,6 +294,24 @@ func _Product_AddPhotosToProduct_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Product_DeletePhotosFromProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeletePhotosRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServer).DeletePhotosFromProduct(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/sale.Product/DeletePhotosFromProduct",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServer).DeletePhotosFromProduct(ctx, req.(*DeletePhotosRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Product_ServiceDesc is the grpc.ServiceDesc for Product service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -314,6 +346,10 @@ var Product_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddPhotosToProduct",
 			Handler:    _Product_AddPhotosToProduct_Handler,
+		},
+		{
+			MethodName: "DeletePhotosFromProduct",
+			Handler:    _Product_DeletePhotosFromProduct_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
