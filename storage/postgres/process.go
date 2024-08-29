@@ -3,7 +3,6 @@ package postgres
 import (
 	"context"
 	"database/sql"
-	"time"
 
 	"log/slog"
 	pb "sale/genproto/sale"
@@ -22,10 +21,10 @@ func NewProcessRepository(db *sql.DB) repo.Processes {
 
 func (repo *ProcessRepository) CreateProcess(ctx context.Context, req *pb.CreateProcessRequest) (*pb.ProcessResponse, error) {
 	var response pb.ProcessResponse
-	query := `INSERT INTO process (user_id, product_id, process_status, amount, created_at)
-			  VALUES ($1, $2, $3, $4, $5)
+	query := `INSERT INTO process (user_id, product_id, process_status, amount)
+			  VALUES ($1, $2, $3, $4)
 			  RETURNING id;`
-	err := repo.Db.QueryRow(query, req.UserId, req.ProductId, req.Status, req.Amount, time.Now().UTC()).
+	err := repo.Db.QueryRow(query, req.UserId, req.ProductId, req.Status, req.Amount).
 		Scan(&response.Id)
 
 	if err != nil {
@@ -82,9 +81,9 @@ func (repo *ProcessRepository) GetProcessByProductId(ctx context.Context, req *p
 
 func (repo *ProcessRepository) UpdateProcess(ctx context.Context, req *pb.UpdateProcessRequest) error {
 	query := `UPDATE process
-			  SET process_status = $1, updated_at = $2
-			  WHERE id = $3;`
-	result, err := repo.Db.Exec(query, req.Status, time.Now().UTC(), req.Id)
+			  SET process_status = $1
+			  WHERE id = $2;`
+	result, err := repo.Db.Exec(query, req.Status, req.Id)
 	if err != nil {
 		return err
 	}
@@ -101,7 +100,7 @@ func (repo *ProcessRepository) UpdateProcess(ctx context.Context, req *pb.Update
 func (repo *ProcessRepository) CancelProcess(ctx context.Context, req *pb.CancelProcessRequest) (*pb.CancelProcessResponse, error) {
 	var response pb.CancelProcessResponse
 	query := `UPDATE process
-	SET process_status = 'Cancelled', updated_at = current_timestamp
+	SET process_status = 'Cancelled'
 	WHERE id = $2 and process_status = 'Pending' RETURNING amount`
 	err := repo.Db.QueryRowContext(ctx, query, req.Id).Scan(&response.Amount)
 	if err != nil {

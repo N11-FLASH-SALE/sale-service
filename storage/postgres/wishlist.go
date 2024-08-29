@@ -7,7 +7,6 @@ import (
 	pb "sale/genproto/sale"
 	logger "sale/logs"
 	"sale/storage/repo"
-	"time"
 )
 
 type WishlistRepository struct {
@@ -21,10 +20,10 @@ func NewWishlistRepository(db *sql.DB) repo.Wishlist {
 
 func (repo *WishlistRepository) CreateWishlist(ctx context.Context, request *pb.CreateWishlistRequest) (*pb.WishlistResponse, error) {
 	response := pb.WishlistResponse{ProductId: request.ProductId}
-	query := `INSERT INTO wishlist (user_id, product_id, created_at)
-			  VALUES ($1, $2, $3)
+	query := `INSERT INTO wishlist (user_id, product_id)
+			  VALUES ($1, $2)
 			  RETURNING id;`
-	err := repo.Db.QueryRowContext(ctx, query, request.UserId, request.ProductId, time.Now().UTC()).
+	err := repo.Db.QueryRowContext(ctx, query, request.UserId, request.ProductId).
 		Scan(&response.Id)
 
 	if err != nil {
