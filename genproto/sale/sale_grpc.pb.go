@@ -749,7 +749,7 @@ var Wishlist_ServiceDesc = grpc.ServiceDesc{
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FeedbackClient interface {
 	CreateFeedback(ctx context.Context, in *CreateFeedbackRequest, opts ...grpc.CallOption) (*FeedbackResponse, error)
-	GetFeedback(ctx context.Context, in *GetFeedbackRequest, opts ...grpc.CallOption) (*FeedbackResponse, error)
+	GetFeedback(ctx context.Context, in *GetFeedbackRequest, opts ...grpc.CallOption) (*GetFeedbackResponse, error)
 	GetFeedbackOfUser(ctx context.Context, in *GetFeedbackOfUserRequest, opts ...grpc.CallOption) (*GetFeedbackOfUserResponse, error)
 }
 
@@ -770,8 +770,8 @@ func (c *feedbackClient) CreateFeedback(ctx context.Context, in *CreateFeedbackR
 	return out, nil
 }
 
-func (c *feedbackClient) GetFeedback(ctx context.Context, in *GetFeedbackRequest, opts ...grpc.CallOption) (*FeedbackResponse, error) {
-	out := new(FeedbackResponse)
+func (c *feedbackClient) GetFeedback(ctx context.Context, in *GetFeedbackRequest, opts ...grpc.CallOption) (*GetFeedbackResponse, error) {
+	out := new(GetFeedbackResponse)
 	err := c.cc.Invoke(ctx, "/sale.Feedback/GetFeedback", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -793,7 +793,7 @@ func (c *feedbackClient) GetFeedbackOfUser(ctx context.Context, in *GetFeedbackO
 // for forward compatibility
 type FeedbackServer interface {
 	CreateFeedback(context.Context, *CreateFeedbackRequest) (*FeedbackResponse, error)
-	GetFeedback(context.Context, *GetFeedbackRequest) (*FeedbackResponse, error)
+	GetFeedback(context.Context, *GetFeedbackRequest) (*GetFeedbackResponse, error)
 	GetFeedbackOfUser(context.Context, *GetFeedbackOfUserRequest) (*GetFeedbackOfUserResponse, error)
 	mustEmbedUnimplementedFeedbackServer()
 }
@@ -805,7 +805,7 @@ type UnimplementedFeedbackServer struct {
 func (UnimplementedFeedbackServer) CreateFeedback(context.Context, *CreateFeedbackRequest) (*FeedbackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateFeedback not implemented")
 }
-func (UnimplementedFeedbackServer) GetFeedback(context.Context, *GetFeedbackRequest) (*FeedbackResponse, error) {
+func (UnimplementedFeedbackServer) GetFeedback(context.Context, *GetFeedbackRequest) (*GetFeedbackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFeedback not implemented")
 }
 func (UnimplementedFeedbackServer) GetFeedbackOfUser(context.Context, *GetFeedbackOfUserRequest) (*GetFeedbackOfUserResponse, error) {
@@ -907,7 +907,7 @@ var Feedback_ServiceDesc = grpc.ServiceDesc{
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type BoughtClient interface {
 	CreateBought(ctx context.Context, in *CreateBoughtRequest, opts ...grpc.CallOption) (*BoughtResponse, error)
-	GetBought(ctx context.Context, in *GetBoughtRequest, opts ...grpc.CallOption) (*BoughtResponse, error)
+	GetBought(ctx context.Context, in *GetBoughtRequest, opts ...grpc.CallOption) (*GetBoughtResponse, error)
 	GetBoughtOfUser(ctx context.Context, in *GetBoughtOfUserRequest, opts ...grpc.CallOption) (*GetBoughtOfUserResponse, error)
 }
 
@@ -928,8 +928,8 @@ func (c *boughtClient) CreateBought(ctx context.Context, in *CreateBoughtRequest
 	return out, nil
 }
 
-func (c *boughtClient) GetBought(ctx context.Context, in *GetBoughtRequest, opts ...grpc.CallOption) (*BoughtResponse, error) {
-	out := new(BoughtResponse)
+func (c *boughtClient) GetBought(ctx context.Context, in *GetBoughtRequest, opts ...grpc.CallOption) (*GetBoughtResponse, error) {
+	out := new(GetBoughtResponse)
 	err := c.cc.Invoke(ctx, "/sale.Bought/GetBought", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -951,7 +951,7 @@ func (c *boughtClient) GetBoughtOfUser(ctx context.Context, in *GetBoughtOfUserR
 // for forward compatibility
 type BoughtServer interface {
 	CreateBought(context.Context, *CreateBoughtRequest) (*BoughtResponse, error)
-	GetBought(context.Context, *GetBoughtRequest) (*BoughtResponse, error)
+	GetBought(context.Context, *GetBoughtRequest) (*GetBoughtResponse, error)
 	GetBoughtOfUser(context.Context, *GetBoughtOfUserRequest) (*GetBoughtOfUserResponse, error)
 	mustEmbedUnimplementedBoughtServer()
 }
@@ -963,7 +963,7 @@ type UnimplementedBoughtServer struct {
 func (UnimplementedBoughtServer) CreateBought(context.Context, *CreateBoughtRequest) (*BoughtResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBought not implemented")
 }
-func (UnimplementedBoughtServer) GetBought(context.Context, *GetBoughtRequest) (*BoughtResponse, error) {
+func (UnimplementedBoughtServer) GetBought(context.Context, *GetBoughtRequest) (*GetBoughtResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBought not implemented")
 }
 func (UnimplementedBoughtServer) GetBoughtOfUser(context.Context, *GetBoughtOfUserRequest) (*GetBoughtOfUserResponse, error) {
