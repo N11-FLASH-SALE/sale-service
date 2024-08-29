@@ -4,19 +4,16 @@ import (
 	"context"
 	"database/sql"
 
-	"log/slog"
 	pb "sale/genproto/sale"
-	logger "sale/logs"
 	"sale/storage/repo"
 )
 
 type ProcessRepository struct {
 	Db *sql.DB
-	lg *slog.Logger
 }
 
 func NewProcessRepository(db *sql.DB) repo.Processes {
-	return &ProcessRepository{Db: db, lg: logger.NewLogger()}
+	return &ProcessRepository{Db: db}
 }
 
 func (repo *ProcessRepository) CreateProcess(ctx context.Context, req *pb.CreateProcessRequest) (*pb.ProcessResponse, error) {

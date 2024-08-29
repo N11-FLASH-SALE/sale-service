@@ -3,19 +3,16 @@ package postgres
 import (
 	"context"
 	"database/sql"
-	"log/slog"
 	pb "sale/genproto/sale"
-	logger "sale/logs"
 	"sale/storage/repo"
 )
 
 type WishlistRepository struct {
 	Db *sql.DB
-	lg *slog.Logger
 }
 
 func NewWishlistRepository(db *sql.DB) repo.Wishlist {
-	return &WishlistRepository{Db: db, lg: logger.NewLogger()}
+	return &WishlistRepository{Db: db}
 }
 
 func (repo *WishlistRepository) CreateWishlist(ctx context.Context, request *pb.CreateWishlistRequest) (*pb.WishlistResponse, error) {
