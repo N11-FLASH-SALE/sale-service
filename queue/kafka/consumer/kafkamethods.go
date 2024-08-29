@@ -13,11 +13,11 @@ type KafkaMethods interface {
 
 type KafkaMethodsImpl struct {
 	brokers          []string
-	msgBrokerService service.ProductService
+	msgBrokerService service.ProductKafkaService
 	logger           *slog.Logger
 }
 
-func NewKafkaMethods(brokers []string, msgBrokerService service.ProductService, logger *slog.Logger) KafkaMethods {
+func NewKafkaMethods(brokers []string, msgBrokerService service.ProductKafkaService, logger *slog.Logger) KafkaMethods {
 	return &KafkaMethodsImpl{
 		brokers:          brokers,
 		msgBrokerService: msgBrokerService,
