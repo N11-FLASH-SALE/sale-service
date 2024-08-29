@@ -7,6 +7,7 @@ import (
 	"net"
 	"sale/config"
 	"sale/logs"
+	"sale/queue/kafka/consumer"
 	"sale/service"
 	"sale/storage"
 	"sale/storage/mongosh"
@@ -46,6 +47,12 @@ func main() {
 	serviceFeedback := service.NewFeedbackService(logger, storage)
 	serviceBought := service.NewBoughtService(logger, storage)
 	serviceProcess := service.NewProcessService(logger, storage)
+	serviceProductKafka := service.NewProductKafkaService(logger, storage)
+
+	kaf := consumer.NewKafkaMethods(conf.Kafka.Brokers, *serviceProductKafka, logger)
+
+	go kaf.UpdateProduct(context.Background(), "update_product")
+	go kaf.DeleteProduct(context.Background(), "delete_product")
 
 	s := grpc.NewServer()
 

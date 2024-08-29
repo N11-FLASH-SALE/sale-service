@@ -13,6 +13,7 @@ type Config struct {
 	Server   ServerConfig
 	Mongo    MongoDBConfig
 	Redis    RedisConfig
+	Kafka    KafkaConfig
 }
 
 type PostgresConfig struct {
@@ -35,6 +36,10 @@ type ServerConfig struct {
 type MongoDBConfig struct {
 	MDB_ADDRESS string
 	MDB_NAME    string
+}
+
+type KafkaConfig struct {
+	Brokers []string
 }
 
 func Load() *Config {
@@ -60,6 +65,9 @@ func Load() *Config {
 		Mongo: MongoDBConfig{
 			MDB_ADDRESS: cast.ToString(coalesce("MDB_ADDRESS", "mongodb://localhost:27017")),
 			MDB_NAME:    cast.ToString(coalesce("MDB_NAME", "test")),
+		},
+		Kafka: KafkaConfig{
+			Brokers: cast.ToStringSlice(coalesce("KAFKA_BROKERS", "localhost:9092")),
 		},
 	}
 }
