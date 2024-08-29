@@ -8,6 +8,7 @@ import (
 	"log/slog"
 	pb "sale/genproto/sale"
 	logger "sale/logs"
+	"sale/storage/repo"
 )
 
 type ProcessRepository struct {
@@ -15,7 +16,7 @@ type ProcessRepository struct {
 	lg *slog.Logger
 }
 
-func NewProcessRepository(db *sql.DB) *ProcessRepository {
+func NewProcessRepository(db *sql.DB) repo.Processes {
 	return &ProcessRepository{Db: db, lg: logger.NewLogger()}
 }
 
@@ -33,7 +34,7 @@ func (repo *ProcessRepository) CreateProcess(ctx context.Context, req *pb.Create
 	return &response, nil
 }
 
-func (repo *ProcessRepository) GetProcessOfUserByProductId(ctx context.Context,req *pb.GetProcessOfUserByProductIdRequest) (*pb.GetProcessOfUserByProductIdResponse, error) {
+func (repo *ProcessRepository) GetProcessOfUserByProductId(ctx context.Context, req *pb.GetProcessOfUserByProductIdRequest) (*pb.GetProcessOfUserByProductIdResponse, error) {
 	var response pb.GetProcessOfUserByProductIdResponse
 	query := `SELECT id, user_id, product_id, status, amount
 			  FROM process
@@ -56,7 +57,7 @@ func (repo *ProcessRepository) GetProcessOfUserByProductId(ctx context.Context,r
 	return &response, nil
 }
 
-func (repo *ProcessRepository) GetProcessByProductId(ctx context.Context,req *pb.GetProcessByProductIdRequest) (*pb.GetProcessByProductIdResponse, error) {
+func (repo *ProcessRepository) GetProcessByProductId(ctx context.Context, req *pb.GetProcessByProductIdRequest) (*pb.GetProcessByProductIdResponse, error) {
 	var response pb.GetProcessByProductIdResponse
 	query := `SELECT id, user_id, product_id, status, amount
 			  FROM process
@@ -79,18 +80,38 @@ func (repo *ProcessRepository) GetProcessByProductId(ctx context.Context,req *pb
 	return &response, nil
 }
 
-func (repo *ProcessRepository) UpdateProcess(ctx context.Context,req *pb.UpdateProcessRequest) error {
+func (repo *ProcessRepository) UpdateProcess(ctx context.Context, req *pb.UpdateProcessRequest) error {
 	query := `UPDATE process
 			  SET status = $1, updated_at = $2
 			  WHERE id = $3;`
-	_, err := repo.Db.Exec(query, req.Status, time.Now().UTC(), req.Id)
-	return err
+	result, err := repo.Db.Exec(query, req.Status, time.Now().UTC(), req.Id)
+	if err != nil {
+		return err
+	}
+	count, err := result.RowsAffected()
+	if err != nil {
+		return err
+	}
+	if count == 0 {
+		return sql.ErrNoRows
+	}
+	return nil
 }
 
-func (repo *ProcessRepository) CancelProcess(ctx context.Context,req *pb.CancelProcessRequest) error {
+func (repo *ProcessRepository) CancelProcess(ctx context.Context, req *pb.CancelProcessRequest) error {
 	query := `UPDATE process
 			  SET status = 'cancelled', updated_at = $1
 			  WHERE id = $2;`
-	_, err := repo.Db.Exec(query, time.Now().UTC(), req.Id)
-	return err
+	result, err := repo.Db.Exec(query, time.Now().UTC(), req.Id)
+	if err != nil {
+		return err
+	}
+	count, err := result.RowsAffected()
+	if err != nil {
+		return err
+	}
+	if count == 0 {
+		return sql.ErrNoRows
+	}
+	return nil
 }

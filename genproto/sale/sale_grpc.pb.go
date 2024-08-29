@@ -591,8 +591,8 @@ var Process_ServiceDesc = grpc.ServiceDesc{
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type WishlistClient interface {
 	CreateWishlist(ctx context.Context, in *CreateWishlistRequest, opts ...grpc.CallOption) (*WishlistResponse, error)
-	GetWishlist(ctx context.Context, in *GetWishlistRequest, opts ...grpc.CallOption) (*WishlistResponse, error)
-	GetWishlistById(ctx context.Context, in *GetWishlistRequest, opts ...grpc.CallOption) (*WishlistResponse, error)
+	GetWishlist(ctx context.Context, in *GetWishlistRequest, opts ...grpc.CallOption) (*GetWishlistResponse, error)
+	GetWishlistById(ctx context.Context, in *GetWishlistByIdRequest, opts ...grpc.CallOption) (*GetWishlistByIdResponse, error)
 }
 
 type wishlistClient struct {
@@ -612,8 +612,8 @@ func (c *wishlistClient) CreateWishlist(ctx context.Context, in *CreateWishlistR
 	return out, nil
 }
 
-func (c *wishlistClient) GetWishlist(ctx context.Context, in *GetWishlistRequest, opts ...grpc.CallOption) (*WishlistResponse, error) {
-	out := new(WishlistResponse)
+func (c *wishlistClient) GetWishlist(ctx context.Context, in *GetWishlistRequest, opts ...grpc.CallOption) (*GetWishlistResponse, error) {
+	out := new(GetWishlistResponse)
 	err := c.cc.Invoke(ctx, "/sale.Wishlist/GetWishlist", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -621,8 +621,8 @@ func (c *wishlistClient) GetWishlist(ctx context.Context, in *GetWishlistRequest
 	return out, nil
 }
 
-func (c *wishlistClient) GetWishlistById(ctx context.Context, in *GetWishlistRequest, opts ...grpc.CallOption) (*WishlistResponse, error) {
-	out := new(WishlistResponse)
+func (c *wishlistClient) GetWishlistById(ctx context.Context, in *GetWishlistByIdRequest, opts ...grpc.CallOption) (*GetWishlistByIdResponse, error) {
+	out := new(GetWishlistByIdResponse)
 	err := c.cc.Invoke(ctx, "/sale.Wishlist/GetWishlistById", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -635,8 +635,8 @@ func (c *wishlistClient) GetWishlistById(ctx context.Context, in *GetWishlistReq
 // for forward compatibility
 type WishlistServer interface {
 	CreateWishlist(context.Context, *CreateWishlistRequest) (*WishlistResponse, error)
-	GetWishlist(context.Context, *GetWishlistRequest) (*WishlistResponse, error)
-	GetWishlistById(context.Context, *GetWishlistRequest) (*WishlistResponse, error)
+	GetWishlist(context.Context, *GetWishlistRequest) (*GetWishlistResponse, error)
+	GetWishlistById(context.Context, *GetWishlistByIdRequest) (*GetWishlistByIdResponse, error)
 	mustEmbedUnimplementedWishlistServer()
 }
 
@@ -647,10 +647,10 @@ type UnimplementedWishlistServer struct {
 func (UnimplementedWishlistServer) CreateWishlist(context.Context, *CreateWishlistRequest) (*WishlistResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateWishlist not implemented")
 }
-func (UnimplementedWishlistServer) GetWishlist(context.Context, *GetWishlistRequest) (*WishlistResponse, error) {
+func (UnimplementedWishlistServer) GetWishlist(context.Context, *GetWishlistRequest) (*GetWishlistResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetWishlist not implemented")
 }
-func (UnimplementedWishlistServer) GetWishlistById(context.Context, *GetWishlistRequest) (*WishlistResponse, error) {
+func (UnimplementedWishlistServer) GetWishlistById(context.Context, *GetWishlistByIdRequest) (*GetWishlistByIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetWishlistById not implemented")
 }
 func (UnimplementedWishlistServer) mustEmbedUnimplementedWishlistServer() {}
@@ -703,7 +703,7 @@ func _Wishlist_GetWishlist_Handler(srv interface{}, ctx context.Context, dec fun
 }
 
 func _Wishlist_GetWishlistById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetWishlistRequest)
+	in := new(GetWishlistByIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -715,7 +715,7 @@ func _Wishlist_GetWishlistById_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: "/sale.Wishlist/GetWishlistById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WishlistServer).GetWishlistById(ctx, req.(*GetWishlistRequest))
+		return srv.(WishlistServer).GetWishlistById(ctx, req.(*GetWishlistByIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

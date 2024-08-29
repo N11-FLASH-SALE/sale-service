@@ -5,6 +5,7 @@ import (
 	"fmt"
 	pb "sale/genproto/sale"
 	"sale/models"
+	"sale/storage/repo"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -17,7 +18,7 @@ type ProductsRepo struct {
 	Coll *mongo.Collection
 }
 
-func NewProductsRepository(db *mongo.Database) *ProductsRepo {
+func NewProductsRepository(db *mongo.Database) repo.Product {
 	return &ProductsRepo{Coll: db.Collection("product")}
 }
 
