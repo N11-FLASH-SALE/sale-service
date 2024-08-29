@@ -29,8 +29,7 @@ type RedisConfig struct {
 }
 
 type ServerConfig struct {
-	USER_SERVICE string
-	USER_ROUTER  string
+	SALE_SERVICE string
 }
 
 type MongoDBConfig struct {
@@ -52,8 +51,7 @@ func Load() *Config {
 			PDB_PASSWORD: cast.ToString(coalesce("PDB_PASSWORD", "3333")),
 		},
 		Server: ServerConfig{
-			USER_SERVICE: cast.ToString(coalesce("USER_SERVICE", ":1234")),
-			USER_ROUTER:  cast.ToString(coalesce("USER_ROUTER", ":1234")),
+			SALE_SERVICE: cast.ToString(coalesce("SALE_SERVICE", ":1234")),
 		},
 		Redis: RedisConfig{
 			RDB_ADDRESS:  cast.ToString(coalesce("RDB_ADDRESS", "localhost:6379")),
