@@ -11,6 +11,10 @@ import (
 	"sale/storage"
 	"sale/storage/mongosh"
 	"sale/storage/postgres"
+
+	pb "sale/genproto/sale"
+
+	"google.golang.org/grpc"
 )
 
 func main() {
@@ -38,5 +42,23 @@ func main() {
 	defer lis.Close()
 
 	ServiceProduct := service.NewProductService(logger, storage)
+	serviceWishlist := service.NewWishlistService(logger, storage)
+	serviceFeedback := service.NewFeedbackService(logger, storage)
+	serviceBought := service.NewBoughtService(logger, storage)
+	serviceProcess := service.NewProcessService(logger, storage)
+
+	s := grpc.NewServer()
+
+	pb.RegisterProductServer(s, ServiceProduct)
+	pb.RegisterWishlistServer(s, serviceWishlist)
+	pb.RegisterFeedbackServer(s, serviceFeedback)
+	pb.RegisterBoughtServer(s, serviceBought)
+	pb.RegisterProcessServer(s, serviceProcess)
+
+	log.Printf("server listening at %v", lis.Addr())
+	err = s.Serve(lis)
+	if err != nil {
+		log.Fatalf("error while serving: %v", err)
+	}
 
 }
