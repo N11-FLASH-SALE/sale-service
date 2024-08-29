@@ -364,7 +364,7 @@ type ProcessClient interface {
 	GetProcessOfUserByProductId(ctx context.Context, in *GetProcessOfUserByProductIdRequest, opts ...grpc.CallOption) (*GetProcessOfUserByProductIdResponse, error)
 	GetProcessByProductId(ctx context.Context, in *GetProcessByProductIdRequest, opts ...grpc.CallOption) (*GetProcessByProductIdResponse, error)
 	UpdateProcess(ctx context.Context, in *UpdateProcessRequest, opts ...grpc.CallOption) (*Void, error)
-	CancelProcess(ctx context.Context, in *CancelProcessRequest, opts ...grpc.CallOption) (*Void, error)
+	CancelProcess(ctx context.Context, in *CancelProcessRequest, opts ...grpc.CallOption) (*CancelProcessResponse, error)
 }
 
 type processClient struct {
@@ -411,8 +411,8 @@ func (c *processClient) UpdateProcess(ctx context.Context, in *UpdateProcessRequ
 	return out, nil
 }
 
-func (c *processClient) CancelProcess(ctx context.Context, in *CancelProcessRequest, opts ...grpc.CallOption) (*Void, error) {
-	out := new(Void)
+func (c *processClient) CancelProcess(ctx context.Context, in *CancelProcessRequest, opts ...grpc.CallOption) (*CancelProcessResponse, error) {
+	out := new(CancelProcessResponse)
 	err := c.cc.Invoke(ctx, "/sale.Process/CancelProcess", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -428,7 +428,7 @@ type ProcessServer interface {
 	GetProcessOfUserByProductId(context.Context, *GetProcessOfUserByProductIdRequest) (*GetProcessOfUserByProductIdResponse, error)
 	GetProcessByProductId(context.Context, *GetProcessByProductIdRequest) (*GetProcessByProductIdResponse, error)
 	UpdateProcess(context.Context, *UpdateProcessRequest) (*Void, error)
-	CancelProcess(context.Context, *CancelProcessRequest) (*Void, error)
+	CancelProcess(context.Context, *CancelProcessRequest) (*CancelProcessResponse, error)
 	mustEmbedUnimplementedProcessServer()
 }
 
@@ -448,7 +448,7 @@ func (UnimplementedProcessServer) GetProcessByProductId(context.Context, *GetPro
 func (UnimplementedProcessServer) UpdateProcess(context.Context, *UpdateProcessRequest) (*Void, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateProcess not implemented")
 }
-func (UnimplementedProcessServer) CancelProcess(context.Context, *CancelProcessRequest) (*Void, error) {
+func (UnimplementedProcessServer) CancelProcess(context.Context, *CancelProcessRequest) (*CancelProcessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelProcess not implemented")
 }
 func (UnimplementedProcessServer) mustEmbedUnimplementedProcessServer() {}

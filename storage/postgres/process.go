@@ -3,29 +3,25 @@ package postgres
 import (
 	"context"
 	"database/sql"
-	"time"
 
-	"log/slog"
 	pb "sale/genproto/sale"
-	logger "sale/logs"
 	"sale/storage/repo"
 )
 
 type ProcessRepository struct {
 	Db *sql.DB
-	lg *slog.Logger
 }
 
 func NewProcessRepository(db *sql.DB) repo.Processes {
-	return &ProcessRepository{Db: db, lg: logger.NewLogger()}
+	return &ProcessRepository{Db: db}
 }
 
 func (repo *ProcessRepository) CreateProcess(ctx context.Context, req *pb.CreateProcessRequest) (*pb.ProcessResponse, error) {
 	var response pb.ProcessResponse
-	query := `INSERT INTO process (user_id, product_id, status, amount, created_at)
-			  VALUES ($1, $2, $3, $4, $5)
+	query := `INSERT INTO process (user_id, product_id, status, amount)
+			  VALUES ($1, $2, $3, $4)
 			  RETURNING id;`
-	err := repo.Db.QueryRow(query, req.UserId, req.ProductId, req.Status, req.Amount, time.Now().UTC()).
+	err := repo.Db.QueryRow(query, req.UserId, req.ProductId, req.Status, req.Amount).
 		Scan(&response.Id)
 
 	if err != nil {
@@ -82,9 +78,9 @@ func (repo *ProcessRepository) GetProcessByProductId(ctx context.Context, req *p
 
 func (repo *ProcessRepository) UpdateProcess(ctx context.Context, req *pb.UpdateProcessRequest) error {
 	query := `UPDATE process
-			  SET status = $1, updated_at = $2
-			  WHERE id = $3;`
-	result, err := repo.Db.Exec(query, req.Status, time.Now().UTC(), req.Id)
+			  SET status = $1
+			  WHERE id = $2;`
+	result, err := repo.Db.Exec(query, req.Status, req.Id)
 	if err != nil {
 		return err
 	}
@@ -98,20 +94,14 @@ func (repo *ProcessRepository) UpdateProcess(ctx context.Context, req *pb.Update
 	return nil
 }
 
-func (repo *ProcessRepository) CancelProcess(ctx context.Context, req *pb.CancelProcessRequest) error {
+func (repo *ProcessRepository) CancelProcess(ctx context.Context, req *pb.CancelProcessRequest) (*pb.CancelProcessResponse, error) {
+	var response pb.CancelProcessResponse
 	query := `UPDATE process
-			  SET status = 'cancelled', updated_at = $1
-			  WHERE id = $2;`
-	result, err := repo.Db.Exec(query, time.Now().UTC(), req.Id)
+	SET status = 'Cancelled'
+	WHERE id = $2 and status = 'Pending' RETURNING amount`
+	err := repo.Db.QueryRowContext(ctx, query, req.Id).Scan(&response.Amount)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	count, err := result.RowsAffected()
-	if err != nil {
-		return err
-	}
-	if count == 0 {
-		return sql.ErrNoRows
-	}
-	return nil
+	return &response, nil
 }

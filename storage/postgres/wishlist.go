@@ -3,28 +3,24 @@ package postgres
 import (
 	"context"
 	"database/sql"
-	"log/slog"
 	pb "sale/genproto/sale"
-	logger "sale/logs"
 	"sale/storage/repo"
-	"time"
 )
 
 type WishlistRepository struct {
 	Db *sql.DB
-	lg *slog.Logger
 }
 
 func NewWishlistRepository(db *sql.DB) repo.Wishlist {
-	return &WishlistRepository{Db: db, lg: logger.NewLogger()}
+	return &WishlistRepository{Db: db}
 }
 
 func (repo *WishlistRepository) CreateWishlist(ctx context.Context, request *pb.CreateWishlistRequest) (*pb.WishlistResponse, error) {
-	var response pb.WishlistResponse
-	query := `INSERT INTO wishlist (user_id, product_id, created_at)
-			  VALUES ($1, $2, $3)
+	response := pb.WishlistResponse{ProductId: request.ProductId}
+	query := `INSERT INTO wishlist (user_id, product_id)
+			  VALUES ($1, $2)
 			  RETURNING id;`
-	err := repo.Db.QueryRowContext(ctx, query, request.UserId, request.ProductId, time.Now().UTC()).
+	err := repo.Db.QueryRowContext(ctx, query, request.UserId, request.ProductId).
 		Scan(&response.Id)
 
 	if err != nil {

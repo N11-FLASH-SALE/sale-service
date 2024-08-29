@@ -3,19 +3,16 @@ package postgres
 import (
 	"context"
 	"database/sql"
-	"log/slog"
 	pb "sale/genproto/sale"
-	logger "sale/logs"
 	"sale/storage/repo"
 )
 
 type FeedbackRepository struct {
 	Db *sql.DB
-	lg *slog.Logger
 }
 
 func NewFeedbackRepository(db *sql.DB) repo.Feedback {
-	return &FeedbackRepository{Db: db, lg: logger.NewLogger()}
+	return &FeedbackRepository{Db: db}
 }
 
 func (repo *FeedbackRepository) CreateFeedback(ctx context.Context, req *pb.CreateFeedbackRequest) (*pb.FeedbackResponse, error) {
