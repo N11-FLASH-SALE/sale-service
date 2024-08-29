@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"encoding/json"
 	"log/slog"
 	pb "sale/genproto/sale"
 	"sale/storage"
@@ -53,26 +54,37 @@ func (s ProductService) GetProductById(ctx context.Context, req *pb.ProductId) (
 	return res, nil
 }
 
-func (s ProductService) UpdateProduct(ctx context.Context, req *pb.UpdateProductRequest) (*pb.Void, error) {
+func (s ProductService) UpdateProduct(message []byte) {
 	s.logger.Info("UpdateProduct rpc method is started")
-	err := s.repo.Product().UpdateProduct(ctx, req)
+	req := pb.UpdateProductRequest{}
+	err := json.Unmarshal(message, &req)
 	if err != nil {
 		s.logger.Error(err.Error())
-		return nil, err
+		return
+	}
+
+	err = s.repo.Product().UpdateProduct(context.Background(), &req)
+	if err != nil {
+		s.logger.Error(err.Error())
+		return
 	}
 	s.logger.Info("UpdateProduct finished succesfully")
-	return &pb.Void{}, nil
 }
 
-func (s ProductService) DeleteProduct(ctx context.Context, req *pb.ProductId) (*pb.Void, error) {
+func (s ProductService) DeleteProduct(message []byte) {
 	s.logger.Info("DeleteProduct rpc method is started")
-	err := s.repo.Product().DeleteProduct(ctx, req)
+	req := pb.ProductId{}
+	err := json.Unmarshal(message, &req)
 	if err != nil {
 		s.logger.Error(err.Error())
-		return nil, err
+		return
+	}
+	err = s.repo.Product().DeleteProduct(context.Background(), &req)
+	if err != nil {
+		s.logger.Error(err.Error())
+		return
 	}
 	s.logger.Info("DeleteProduct finished succesfully")
-	return &pb.Void{}, nil
 }
 
 func (s ProductService) IsProductOk(ctx context.Context, req *pb.ProductId) (*pb.Void, error) {
