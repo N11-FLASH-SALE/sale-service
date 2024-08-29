@@ -6,6 +6,7 @@ import (
 	"log/slog"
 	pb "sale/genproto/sale"
 	logger "sale/logs"
+	"sale/storage/repo"
 )
 
 type FeedbackRepository struct {
@@ -13,7 +14,7 @@ type FeedbackRepository struct {
 	lg *slog.Logger
 }
 
-func NewFeedbackRepository(db *sql.DB) *FeedbackRepository {
+func NewFeedbackRepository(db *sql.DB) repo.Feedback {
 	return &FeedbackRepository{Db: db, lg: logger.NewLogger()}
 }
 
@@ -31,7 +32,7 @@ func (repo *FeedbackRepository) CreateFeedback(ctx context.Context, req *pb.Crea
 	return &res, nil
 }
 
-func (repo *FeedbackRepository) GetFeedback(ctx context.Context,request *pb.GetFeedbackRequest) (*pb.GetFeedbackResponse, error) {
+func (repo *FeedbackRepository) GetFeedback(ctx context.Context, request *pb.GetFeedbackRequest) (*pb.GetFeedbackResponse, error) {
 	var response pb.GetFeedbackResponse
 	query := `SELECT user_id, rating, description
 			  FROM feedback
@@ -69,7 +70,7 @@ func (repo *FeedbackRepository) GetFeedback(ctx context.Context,request *pb.GetF
 	return &response, nil
 }
 
-func (repo *FeedbackRepository) GetFeedbackOfUser( ctx context.Context, request *pb.GetFeedbackOfUserRequest) (*pb.GetFeedbackOfUserResponse, error) {
+func (repo *FeedbackRepository) GetFeedbackOfUser(ctx context.Context, request *pb.GetFeedbackOfUserRequest) (*pb.GetFeedbackOfUserResponse, error) {
 	var response pb.GetFeedbackOfUserResponse
 	query := `SELECT product_id, rating, description
 			  FROM feedback
@@ -79,7 +80,6 @@ func (repo *FeedbackRepository) GetFeedbackOfUser( ctx context.Context, request 
 		return nil, err
 	}
 	defer rows.Close()
-
 
 	for rows.Next() {
 		var product_id string
@@ -94,7 +94,7 @@ func (repo *FeedbackRepository) GetFeedbackOfUser( ctx context.Context, request 
 			Rating:      rating,
 			Description: description,
 		})
-		}
+	}
 
 	return &response, nil
 }

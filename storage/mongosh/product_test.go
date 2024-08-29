@@ -1,4 +1,4 @@
-package mongos
+package mongosh
 
 import (
 	"context"
