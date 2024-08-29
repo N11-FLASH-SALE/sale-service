@@ -33,7 +33,7 @@ type Processes interface {
 	GetProcessOfUserByProductId(context.Context, *pb.GetProcessOfUserByProductIdRequest) (*pb.GetProcessOfUserByProductIdResponse, error)
 	GetProcessByProductId(context.Context, *pb.GetProcessByProductIdRequest) (*pb.GetProcessByProductIdResponse, error)
 	UpdateProcess(context.Context, *pb.UpdateProcessRequest) error
-	CancelProcess(context.Context, *pb.CancelProcessRequest) error
+	CancelProcess(context.Context, *pb.CancelProcessRequest) (*pb.CancelProcessResponse, error)
 }
 
 type Wishlist interface {

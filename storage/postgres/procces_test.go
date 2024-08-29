@@ -48,7 +48,7 @@ func TestGetProcessOfUserByProductId(t *testing.T) {
 	}
 
 	ctx := context.Background()
-	resp, err := repo.GetProcessOfUserByProductId(ctx,&req)
+	resp, err := repo.GetProcessOfUserByProductId(ctx, &req)
 	if err != nil {
 		t.Error(err)
 	}
@@ -120,7 +120,7 @@ func TestCancelProcess(t *testing.T) {
 	}
 
 	ctx := context.Background()
-	err = repo.CancelProcess(ctx, &req)
+	res, err := repo.CancelProcess(ctx, &req)
 	assert.NoError(t, err)
-	fmt.Printf("Cancelled process %s\n", req.Id)
+	fmt.Printf("Canceled process %s, amount: %d\n", req.Id, res.Amount)
 }

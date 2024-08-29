@@ -98,20 +98,14 @@ func (repo *ProcessRepository) UpdateProcess(ctx context.Context, req *pb.Update
 	return nil
 }
 
-func (repo *ProcessRepository) CancelProcess(ctx context.Context, req *pb.CancelProcessRequest) error {
+func (repo *ProcessRepository) CancelProcess(ctx context.Context, req *pb.CancelProcessRequest) (*pb.CancelProcessResponse, error) {
+	var response pb.CancelProcessResponse
 	query := `UPDATE process
 	SET process_status = 'Cancelled', updated_at = current_timestamp
-	WHERE id = $2 and process_status = 'Pending'`
-	result, err := repo.Db.Exec(query, req.Id)
+	WHERE id = $2 and process_status = 'Pending' RETURNING amount`
+	err := repo.Db.QueryRowContext(ctx, query, req.Id).Scan(&response.Amount)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	count, err := result.RowsAffected()
-	if err != nil {
-		return err
-	}
-	if count == 0 {
-		return sql.ErrNoRows
-	}
-	return nil
+	return &response, nil
 }
