@@ -34,7 +34,7 @@ func (pro *StoragePro) Product() repo.Product {
 }
 
 func (pro *StoragePro) Bought() repo.Bought {
-	return postgres.NewBougthRepository(pro.PDB)
+	return postgres.NewBoughtRepository(pro.PDB)
 }
 
 func (pro *StoragePro) Feedback() repo.Feedback {

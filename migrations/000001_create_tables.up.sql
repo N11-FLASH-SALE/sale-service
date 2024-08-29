@@ -30,6 +30,6 @@ CREATE TABLE IF NOT EXISTS bought(
     user_id UUID NOT NULL,
     product_id VARCHAR NOT NULL,
     amount integer NOT NULL,
-    card_number VARCHAR(16) NOT NULL,
+    card_number VARCHAR(32) NOT NULL,
     amount_of_money DOUBLE PRECISION NOT NULL
 );
