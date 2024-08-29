@@ -4,8 +4,8 @@ CREATE TYPE process_status AS ENUM ('Pending','Preparing','Delivered','Cancelled
 CREATE TABLE IF NOT EXISTS process(
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL,
-    product_id VARCHAR DEFAULT 'Pending',
-    status process_status NOT NULL,
+    product_id VARCHAR NOT NULL,
+    status process_status DEFAULT 'Pending',
     amount integer NOT NULL
 );
 
