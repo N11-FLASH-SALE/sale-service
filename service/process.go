@@ -74,3 +74,14 @@ func (s ProcessService) CancelProcess(ctx context.Context, req *pb.CancelProcess
 	s.logger.Info("CancelProcess finished succesfully")
 	return res, nil
 }
+
+func (s ProcessService) GetProcessByUserId(ctx context.Context, req *pb.GetProcessByUserIdRequest) (*pb.GetProcessByUserIdResponse, error) {
+	s.logger.Info("GetProcessByUserId rpc method is started")
+	res, err := s.repo.Processes().GetProcessByUserId(ctx, req)
+	if err != nil {
+		s.logger.Error(err.Error())
+		return nil, err
+	}
+	s.logger.Info("GetProcessByUserId finished succesfully")
+	return res, nil
+}

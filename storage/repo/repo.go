@@ -31,6 +31,7 @@ type Feedback interface {
 type Processes interface {
 	CreateProcess(context.Context, *pb.CreateProcessRequest) (*pb.ProcessResponse, error)
 	GetProcessOfUserByProductId(context.Context, *pb.GetProcessOfUserByProductIdRequest) (*pb.GetProcessOfUserByProductIdResponse, error)
+	GetProcessByUserId(context.Context, *pb.GetProcessByUserIdRequest) (*pb.GetProcessByUserIdResponse, error)
 	GetProcessByProductId(context.Context, *pb.GetProcessByProductIdRequest) (*pb.GetProcessByProductIdResponse, error)
 	UpdateProcess(context.Context, *pb.UpdateProcessRequest) error
 	CancelProcess(context.Context, *pb.CancelProcessRequest) (*pb.CancelProcessResponse, error)

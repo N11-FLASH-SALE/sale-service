@@ -53,6 +53,29 @@ func (repo *ProcessRepository) GetProcessOfUserByProductId(ctx context.Context, 
 	return &response, nil
 }
 
+func (repo *ProcessRepository) GetProcessByUserId(ctx context.Context, req *pb.GetProcessByUserIdRequest) (*pb.GetProcessByUserIdResponse, error) {
+	var response pb.GetProcessByUserIdResponse
+	query := `SELECT id, user_id, product_id, status, amount
+			  FROM process
+			  WHERE user_id = $1 AND user_id = $2;`
+	rows, err := repo.Db.Query(query, req.UserId, req.UserId)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var process pb.Processes
+		err := rows.Scan(&process.Id, &process.UserId, &process.ProductId, &process.Status, &process.Amount)
+		if err != nil {
+			return nil, err
+		}
+		response.Processes = append(response.Processes, &process)
+	}
+
+	return &response, nil
+}
+
 func (repo *ProcessRepository) GetProcessByProductId(ctx context.Context, req *pb.GetProcessByProductIdRequest) (*pb.GetProcessByProductIdResponse, error) {
 	var response pb.GetProcessByProductIdResponse
 	query := `SELECT id, user_id, product_id, status, amount
