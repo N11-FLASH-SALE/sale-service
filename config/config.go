@@ -52,7 +52,7 @@ func Load() *Config {
 			PDB_HOST:     cast.ToString(coalesce("PDB_HOST", "localhost")),
 			PDB_PORT:     cast.ToString(coalesce("PDB_PORT", "5432")),
 			PDB_USER:     cast.ToString(coalesce("PDB_USER", "postgres")),
-			PDB_NAME:     cast.ToString(coalesce("PDB_NAME", "flash_sale")),
+			PDB_NAME:     cast.ToString(coalesce("PDB_NAME", "sale")),
 			PDB_PASSWORD: cast.ToString(coalesce("PDB_PASSWORD", "3333")),
 		},
 		Server: ServerConfig{

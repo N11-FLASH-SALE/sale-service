@@ -19,7 +19,7 @@ func TestCreateProcess(t *testing.T) {
 
 	repo := NewProcessRepository(db)
 	req := pb.CreateProcessRequest{
-		UserId:    "user123",
+		UserId:    "550e8400-e29b-41d4-a716-446655440000",
 		ProductId: "product456",
 		Amount:    1000,
 	}
