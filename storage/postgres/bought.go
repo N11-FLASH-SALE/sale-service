@@ -70,8 +70,8 @@ func (r *BoughtRepository) GetBoughtOfUser(ctx context.Context, req *pb.GetBough
 	defer rows.Close()
 
 	for rows.Next() {
-		var bought pb.BoughtOfProduct
-		err := rows.Scan(&bought.UserId, &bought.Amount, &bought.CardNumber, &bought.AmountOfMoney)
+		var bought pb.BoughtOfUser
+		err := rows.Scan(&bought.ProductId, &bought.Amount, &bought.CardNumber, &bought.AmountOfMoney)
 		if err != nil {
 			return nil, err
 		}
