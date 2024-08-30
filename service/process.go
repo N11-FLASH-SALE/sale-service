@@ -85,3 +85,14 @@ func (s ProcessService) GetProcessByUserId(ctx context.Context, req *pb.GetProce
 	s.logger.Info("GetProcessByUserId finished succesfully")
 	return res, nil
 }
+
+func (s ProcessService) GetProcessById(ctx context.Context, req *pb.GetProcessByIdRequest) (*pb.GetProcessByIdResponse, error) {
+	s.logger.Info("GetProcessById rpc method is started")
+	res, err := s.repo.Processes().GetProcessById(ctx, req)
+	if err != nil {
+		s.logger.Error(err.Error())
+		return nil, err
+	}
+	s.logger.Info("GetProcessById finished succesfully")
+	return res, nil
+}

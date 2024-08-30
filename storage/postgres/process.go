@@ -128,3 +128,15 @@ func (repo *ProcessRepository) CancelProcess(ctx context.Context, req *pb.Cancel
 	}
 	return &response, nil
 }
+
+func (repo *ProcessRepository) GetProcessById(ctx context.Context, req *pb.GetProcessByIdRequest) (*pb.GetProcessByIdResponse, error) {
+	var response pb.GetProcessByIdResponse
+	query := `SELECT id, user_id, product_id, status, amount
+			  FROM process
+			  WHERE id = $1;`
+	err := repo.Db.QueryRowContext(ctx, query, req.Id).Scan(&response.Id, &response.UserId, &response.ProductId, &response.Status, &response.Amount)
+	if err != nil {
+		return nil, err
+	}
+	return &response, nil
+}

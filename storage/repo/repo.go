@@ -33,6 +33,7 @@ type Processes interface {
 	GetProcessOfUserByProductId(context.Context, *pb.GetProcessOfUserByProductIdRequest) (*pb.GetProcessOfUserByProductIdResponse, error)
 	GetProcessByUserId(context.Context, *pb.GetProcessByUserIdRequest) (*pb.GetProcessByUserIdResponse, error)
 	GetProcessByProductId(context.Context, *pb.GetProcessByProductIdRequest) (*pb.GetProcessByProductIdResponse, error)
+	GetProcessById(context.Context, *pb.GetProcessByIdRequest) (*pb.GetProcessByIdResponse, error)
 	UpdateProcess(context.Context, *pb.UpdateProcessRequest) error
 	CancelProcess(context.Context, *pb.CancelProcessRequest) (*pb.CancelProcessResponse, error)
 }

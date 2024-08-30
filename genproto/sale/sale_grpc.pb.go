@@ -364,6 +364,7 @@ type ProcessClient interface {
 	GetProcessOfUserByProductId(ctx context.Context, in *GetProcessOfUserByProductIdRequest, opts ...grpc.CallOption) (*GetProcessOfUserByProductIdResponse, error)
 	GetProcessByUserId(ctx context.Context, in *GetProcessByUserIdRequest, opts ...grpc.CallOption) (*GetProcessByUserIdResponse, error)
 	GetProcessByProductId(ctx context.Context, in *GetProcessByProductIdRequest, opts ...grpc.CallOption) (*GetProcessByProductIdResponse, error)
+	GetProcessById(ctx context.Context, in *GetProcessByIdRequest, opts ...grpc.CallOption) (*GetProcessByIdResponse, error)
 	UpdateProcess(ctx context.Context, in *UpdateProcessRequest, opts ...grpc.CallOption) (*Void, error)
 	CancelProcess(ctx context.Context, in *CancelProcessRequest, opts ...grpc.CallOption) (*CancelProcessResponse, error)
 }
@@ -412,6 +413,15 @@ func (c *processClient) GetProcessByProductId(ctx context.Context, in *GetProces
 	return out, nil
 }
 
+func (c *processClient) GetProcessById(ctx context.Context, in *GetProcessByIdRequest, opts ...grpc.CallOption) (*GetProcessByIdResponse, error) {
+	out := new(GetProcessByIdResponse)
+	err := c.cc.Invoke(ctx, "/sale.Process/GetProcessById", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *processClient) UpdateProcess(ctx context.Context, in *UpdateProcessRequest, opts ...grpc.CallOption) (*Void, error) {
 	out := new(Void)
 	err := c.cc.Invoke(ctx, "/sale.Process/UpdateProcess", in, out, opts...)
@@ -438,6 +448,7 @@ type ProcessServer interface {
 	GetProcessOfUserByProductId(context.Context, *GetProcessOfUserByProductIdRequest) (*GetProcessOfUserByProductIdResponse, error)
 	GetProcessByUserId(context.Context, *GetProcessByUserIdRequest) (*GetProcessByUserIdResponse, error)
 	GetProcessByProductId(context.Context, *GetProcessByProductIdRequest) (*GetProcessByProductIdResponse, error)
+	GetProcessById(context.Context, *GetProcessByIdRequest) (*GetProcessByIdResponse, error)
 	UpdateProcess(context.Context, *UpdateProcessRequest) (*Void, error)
 	CancelProcess(context.Context, *CancelProcessRequest) (*CancelProcessResponse, error)
 	mustEmbedUnimplementedProcessServer()
@@ -458,6 +469,9 @@ func (UnimplementedProcessServer) GetProcessByUserId(context.Context, *GetProces
 }
 func (UnimplementedProcessServer) GetProcessByProductId(context.Context, *GetProcessByProductIdRequest) (*GetProcessByProductIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProcessByProductId not implemented")
+}
+func (UnimplementedProcessServer) GetProcessById(context.Context, *GetProcessByIdRequest) (*GetProcessByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProcessById not implemented")
 }
 func (UnimplementedProcessServer) UpdateProcess(context.Context, *UpdateProcessRequest) (*Void, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateProcess not implemented")
@@ -550,6 +564,24 @@ func _Process_GetProcessByProductId_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Process_GetProcessById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProcessByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProcessServer).GetProcessById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/sale.Process/GetProcessById",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProcessServer).GetProcessById(ctx, req.(*GetProcessByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Process_UpdateProcess_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateProcessRequest)
 	if err := dec(in); err != nil {
@@ -608,6 +640,10 @@ var Process_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetProcessByProductId",
 			Handler:    _Process_GetProcessByProductId_Handler,
+		},
+		{
+			MethodName: "GetProcessById",
+			Handler:    _Process_GetProcessById_Handler,
 		},
 		{
 			MethodName: "UpdateProcess",
