@@ -21,7 +21,6 @@ func TestCreateProcess(t *testing.T) {
 	req := pb.CreateProcessRequest{
 		UserId:    "user123",
 		ProductId: "product456",
-		Status:    "pending",
 		Amount:    1000,
 	}
 

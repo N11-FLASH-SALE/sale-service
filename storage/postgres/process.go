@@ -18,10 +18,10 @@ func NewProcessRepository(db *sql.DB) repo.Processes {
 
 func (repo *ProcessRepository) CreateProcess(ctx context.Context, req *pb.CreateProcessRequest) (*pb.ProcessResponse, error) {
 	var response pb.ProcessResponse
-	query := `INSERT INTO process (user_id, product_id, status, amount)
-			  VALUES ($1, $2, $3, $4)
+	query := `INSERT INTO process (user_id, product_id, amount)
+			  VALUES ($1, $2, $3)
 			  RETURNING id;`
-	err := repo.Db.QueryRow(query, req.UserId, req.ProductId, req.Status, req.Amount).
+	err := repo.Db.QueryRow(query, req.UserId, req.ProductId, req.Amount).
 		Scan(&response.Id)
 
 	if err != nil {
