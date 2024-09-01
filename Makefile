@@ -22,6 +22,6 @@ create_migrate:
 	read filename; \
 	migrate create -ext sql -dir migrations -seq $$filename
 	
-run-service:
+run:
 	go run cmd/main.go
 
