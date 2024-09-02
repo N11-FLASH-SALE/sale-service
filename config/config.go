@@ -58,10 +58,6 @@ func Load() *Config {
 		Server: ServerConfig{
 			SALE_SERVICE: cast.ToString(coalesce("SALE_SERVICE", ":1234")),
 		},
-		Redis: RedisConfig{
-			RDB_ADDRESS:  cast.ToString(coalesce("RDB_ADDRESS", "localhost:6379")),
-			RDB_PASSWORD: cast.ToString(coalesce("RDB_PASSWORD", "")),
-		},
 		Mongo: MongoDBConfig{
 			MDB_ADDRESS: cast.ToString(coalesce("MDB_ADDRESS", "mongodb://localhost:27017")),
 			MDB_NAME:    cast.ToString(coalesce("MDB_NAME", "test")),
