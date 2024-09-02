@@ -52,3 +52,14 @@ func (s BoughtService) GetBoughtOfUser(ctx context.Context, req *pb.GetBoughtOfU
 	s.logger.Info("GetBoughtOfUser finished succesfully")
 	return res, nil
 }
+
+func (s BoughtService) GetBoughtByProcessId(ctx context.Context, req *pb.GetBoughtByProcessIdReq) (*pb.GetBoughtByProcessIdRes, error) {
+	s.logger.Info("GetBoughtByProcessId rpc method is started")
+	res, err := s.repo.Bought().GetBoughtByProcessId(ctx, req)
+	if err != nil {
+		s.logger.Error(err.Error())
+		return nil, err
+	}
+	s.logger.Info("GetBoughtByProcessId finished succesfully")
+	return res, nil
+}

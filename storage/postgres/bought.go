@@ -100,3 +100,17 @@ func (r *BoughtRepository) UpdateBought(ctx context.Context, processId string) e
 	}
 	return nil
 }
+
+func (r *BoughtRepository) GetBoughtByProcessId(ctx context.Context, req *pb.GetBoughtByProcessIdReq) (*pb.GetBoughtByProcessIdRes, error) {
+	var res pb.GetBoughtByProcessIdRes
+	query := `
+        SELECT card_number
+        FROM bought
+        WHERE process_id = $1;
+    `
+	err := r.db.QueryRowContext(ctx, query, req.ProcessId).Scan(&res.CardNumber)
+	if err != nil {
+		return nil, err
+	}
+	return &res, nil
+}
