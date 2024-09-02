@@ -9,6 +9,7 @@ type Product interface {
 	CreateProduct(context.Context, *pb.CreateProductRequest) (*pb.ProductId, error)
 	GetProduct(context.Context, *pb.GetProductRequest) (*pb.GetProductResponse, error)
 	GetProductById(context.Context, *pb.ProductId) (*pb.GetProductByIdResponse, error)
+	GetProductsByUserId(context.Context, *pb.GetProductsByUserIdRequest) (*pb.GetProductsByUserIdResponse, error)
 	UpdateProduct(context.Context, *pb.UpdateProductRequest) error
 	DeleteProduct(context.Context, *pb.ProductId) error
 	IsProductOk(context.Context, *pb.ProductId) error

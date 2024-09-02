@@ -333,3 +333,58 @@ func (r *ProductsRepo) DeletePhotosFromProduct(ctx context.Context, req *pb.Dele
 
 	return nil
 }
+
+func (r *ProductsRepo) GetProductsByUserId(ctx context.Context, req *pb.GetProductsByUserIdRequest) (*pb.GetProductsByUserIdResponse, error) {
+	// Filter to get products by seller_id
+	filter := bson.M{
+		"seller_id":  req.SellerId,
+		"deleted_at": nil,
+	}
+
+	// Set limit and offset for pagination
+	options := options.Find()
+	if req.Limit > 0 {
+		options.SetLimit(req.Limit)
+	}
+	if req.Offset > 0 {
+		options.SetSkip(req.Offset)
+	}
+
+	// Query the MongoDB collection
+	cursor, err := r.Coll.Find(ctx, filter, options)
+	if err != nil {
+		return nil, fmt.Errorf("failed to find products: %w", err)
+	}
+	defer cursor.Close(ctx)
+
+	// Prepare the response
+	var products []models.Product
+	if err = cursor.All(ctx, &products); err != nil {
+		return nil, fmt.Errorf("failed to decode products: %w", err)
+	}
+
+	// Map the products to the protobuf message
+	var pbProducts []*pb.Products
+	for _, product := range products {
+		pbProducts = append(pbProducts, &pb.Products{
+			Id:                product.ID.Hex(),
+			Name:              product.Name,
+			Description:       product.Description,
+			Price:             product.Price,
+			Stock:             product.Stock,
+			PriceWithoutStock: product.PriceWithOutStock,
+			LimitOfProduct:    product.LimitOfProduct,
+			Size:              product.Size,
+			Color:             product.Color,
+			StartDate:         product.StartDate.Format("2006-01-02"),
+			EndDate:           product.EndDate.Format("2006-01-02"),
+			SellerId:          product.SellerID,
+			Photos:            product.Photos,
+		})
+	}
+
+	// Return the response with the list of products
+	return &pb.GetProductsByUserIdResponse{
+		Product: pbProducts,
+	}, nil
+}

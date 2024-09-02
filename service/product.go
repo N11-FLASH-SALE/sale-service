@@ -53,6 +53,17 @@ func (s ProductService) GetProductById(ctx context.Context, req *pb.ProductId) (
 	return res, nil
 }
 
+func (s ProductService) GetProductsByUserId(ctx context.Context, req *pb.GetProductsByUserIdRequest) (*pb.GetProductsByUserIdResponse, error) {
+	s.logger.Info("GetProductsByUserId rpc method is started")
+	res, err := s.repo.Product().GetProductsByUserId(ctx, req)
+	if err != nil {
+		s.logger.Error(err.Error())
+		return nil, err
+	}
+	s.logger.Info("GetProductsByUserId finished succesfully")
+	return res, nil
+}
+
 func (s ProductService) IsProductOk(ctx context.Context, req *pb.ProductId) (*pb.Void, error) {
 	s.logger.Info("IsProductOk rpc method is started")
 	err := s.repo.Product().IsProductOk(ctx, req)
