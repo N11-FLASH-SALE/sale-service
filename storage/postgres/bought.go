@@ -34,7 +34,7 @@ func (r *BoughtRepository) CreateBought(ctx context.Context, req *pb.CreateBough
 func (r *BoughtRepository) GetBought(ctx context.Context, req *pb.GetBoughtRequest) (*pb.GetBoughtResponse, error) {
 	var res pb.GetBoughtResponse
 	query := `
-		SELECT user_id, amount, card_number, amount_of_money
+		SELECT user_id, amount, card_number, amount_of_money, status
 		FROM bought
 		WHERE product_id = $1;
 	`
@@ -46,7 +46,7 @@ func (r *BoughtRepository) GetBought(ctx context.Context, req *pb.GetBoughtReque
 
 	for rows.Next() {
 		var bought pb.BoughtOfProduct
-		err := rows.Scan(&bought.UserId, &bought.Amount, &bought.CardNumber, &bought.AmountOfMoney)
+		err := rows.Scan(&bought.UserId, &bought.Amount, &bought.CardNumber, &bought.AmountOfMoney, &bought.Status)
 		if err != nil {
 			return nil, err
 		}
@@ -59,7 +59,7 @@ func (r *BoughtRepository) GetBought(ctx context.Context, req *pb.GetBoughtReque
 func (r *BoughtRepository) GetBoughtOfUser(ctx context.Context, req *pb.GetBoughtOfUserRequest) (*pb.GetBoughtOfUserResponse, error) {
 	var res pb.GetBoughtOfUserResponse
 	query := `
-		SELECT product_id, amount, card_number, amount_of_money
+		SELECT product_id, amount, card_number, amount_of_money, status
 		FROM bought
 		WHERE user_id = $1;
 	`
@@ -71,7 +71,7 @@ func (r *BoughtRepository) GetBoughtOfUser(ctx context.Context, req *pb.GetBough
 
 	for rows.Next() {
 		var bought pb.BoughtOfUser
-		err := rows.Scan(&bought.ProductId, &bought.Amount, &bought.CardNumber, &bought.AmountOfMoney)
+		err := rows.Scan(&bought.ProductId, &bought.Amount, &bought.CardNumber, &bought.AmountOfMoney, &bought.Status)
 		if err != nil {
 			return nil, err
 		}
@@ -79,4 +79,24 @@ func (r *BoughtRepository) GetBoughtOfUser(ctx context.Context, req *pb.GetBough
 	}
 
 	return &res, nil
+}
+
+func (r *BoughtRepository) UpdateBought(ctx context.Context, processId string) error {
+	query := `
+        UPDATE bought
+        SET status = 'Cencelled'
+        WHERE process_id = $1;
+    `
+	result, err := r.db.ExecContext(ctx, query, processId)
+	if err != nil {
+		return err
+	}
+	count, err := result.RowsAffected()
+	if err != nil {
+		return err
+	}
+	if count == 0 {
+		return sql.ErrNoRows
+	}
+	return nil
 }

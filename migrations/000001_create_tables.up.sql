@@ -31,5 +31,7 @@ CREATE TABLE IF NOT EXISTS bought(
     product_id VARCHAR NOT NULL,
     amount integer NOT NULL,
     card_number VARCHAR(32) NOT NULL,
-    amount_of_money DOUBLE PRECISION NOT NULL
+    amount_of_money DOUBLE PRECISION NOT NULL,
+    process_id UUID REFERENCES process(id),
+    status VARCHAR DEFAULT 'bought'
 );

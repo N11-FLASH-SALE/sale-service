@@ -21,6 +21,7 @@ type Bought interface {
 	CreateBought(context.Context, *pb.CreateBoughtRequest) (*pb.BoughtResponse, error)
 	GetBought(context.Context, *pb.GetBoughtRequest) (*pb.GetBoughtResponse, error)
 	GetBoughtOfUser(context.Context, *pb.GetBoughtOfUserRequest) (*pb.GetBoughtOfUserResponse, error)
+	UpdateBought(context.Context, string) error
 }
 
 type Feedback interface {

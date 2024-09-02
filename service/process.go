@@ -71,6 +71,11 @@ func (s ProcessService) CancelProcess(ctx context.Context, req *pb.CancelProcess
 		s.logger.Error(err.Error())
 		return nil, err
 	}
+	err = s.repo.Bought().UpdateBought(ctx, req.Id)
+	if err != nil {
+		s.logger.Error(err.Error())
+		return nil, err
+	}
 	s.logger.Info("CancelProcess finished succesfully")
 	return res, nil
 }
