@@ -121,7 +121,7 @@ func (repo *ProcessRepository) CancelProcess(ctx context.Context, req *pb.Cancel
 	var response pb.CancelProcessResponse
 	query := `UPDATE process
 	SET status = 'Cancelled'
-	WHERE id = $2 and status = 'Pending' RETURNING amount`
+	WHERE id = $1 and status = 'Pending' RETURNING amount`
 	err := repo.Db.QueryRowContext(ctx, query, req.Id).Scan(&response.Amount)
 	if err != nil {
 		return nil, err
