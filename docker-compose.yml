@@ -41,10 +41,11 @@ services:
     volumes:
       - mongo_data:/data/db
     healthcheck:
-      test: ["CMD-SHELL", "mongo --eval 'db.runCommand({ ping: 1 })'"]
+      test: ["CMD-SHELL", "mongo --eval 'db.adminCommand({ ping: 1 })'"]
       interval: 10s
       timeout: 5s
       retries: 5
+      start_period: 30s
   
 
   saleservice:
