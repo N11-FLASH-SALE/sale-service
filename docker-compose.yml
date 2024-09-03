@@ -28,7 +28,7 @@ services:
       - ./migrations:/migrations
     depends_on:
       - postgres-db1
-    command: ["-path", "/migrations", "-database" ,"postgres://${PDB_USER}:${PDB_PASSWORD}@postgres:${PDB_PORT}/${PDB_NAME}?sslmode=disable","up"]
+    command: ["-path", "/migrations", "-database" ,"postgres://${PDB_USER}:${PDB_PASSWORD}@postgres-db1:${PDB_PORT}/${PDB_NAME}?sslmode=disable","up"]
 
 
   mongo:
