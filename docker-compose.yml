@@ -55,10 +55,8 @@ services:
     networks:
       - sales
     depends_on:
-      postgres-db1:
-        condition: service_healthy
-      mongo:
-        condition: service_healthy
+      - mongo
+      - postgres-db1
 
 
 
