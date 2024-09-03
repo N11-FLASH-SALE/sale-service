@@ -1,0 +1,70 @@
+version: '3.9'
+
+services:
+  postgres-db1:
+    container_name: postgres1
+    image: postgres
+    environment:
+      - POSTGRES_USER=${PDB_USER}
+      - POSTGRES_PASSWORD=${PDB_PASSWORD}
+      - POSTGRES_DB=${PDB_NAME}
+    ports:
+      - "5434:5432"
+    volumes:
+      - db:/var/lib/postgresql/data
+    networks:
+      - sales
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  migrate:
+    image: migrate/migrate
+    networks:
+      - sales
+    volumes:
+      - ./migrations:/migrations
+    depends_on:
+      - postgres-db
+    command: ["-path", "/migrations", "-database" ,"postgres://${PDB_USER}:${PDB_PASSWORD}@postgres:${PDB_PORT}/${PDB_NAME}?sslmode=disable","up"]
+
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - 27017:27017
+    networks:
+      - sales
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD-SHELL", "mongo --eval 'db.runCommand({ ping: 1 })'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  
+
+  saleservice:
+    container_name: sale
+    build: .
+    ports:
+      - "50052:50052"
+    networks:
+      - sales
+    depends_on:
+      - mongodb
+      - postgres-db1
+
+
+
+networks:
+  sales:
+    external: true
+
+volumes:
+  db:
+  mongo_data:
+  
