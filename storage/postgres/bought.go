@@ -19,11 +19,11 @@ func NewBoughtRepository(db *sql.DB) repo.Bought {
 func (r *BoughtRepository) CreateBought(ctx context.Context, req *pb.CreateBoughtRequest) (*pb.BoughtResponse, error) {
 	var res pb.BoughtResponse
 	query := `
-		INSERT INTO bought (user_id, product_id, amount, card_number, amount_of_money)
-		VALUES ($1, $2, $3, $4, $5)
+		INSERT INTO bought (user_id, product_id, amount, card_number, amount_of_money,process_id)
+		VALUES ($1, $2, $3, $4, $5,$6)
 		RETURNING id;
 	`
-	err := r.db.QueryRowContext(ctx, query, req.UserId, req.ProductId, req.Amount, req.CardNumber, req.AmountOfMoney).
+	err := r.db.QueryRowContext(ctx, query, req.UserId, req.ProductId, req.Amount, req.CardNumber, req.AmountOfMoney, req.ProcessID).
 		Scan(&res.Id)
 	if err != nil {
 		return nil, err
