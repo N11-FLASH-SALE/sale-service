@@ -68,12 +68,12 @@ func (s ProcessService) CancelProcess(ctx context.Context, req *pb.CancelProcess
 	s.logger.Info("CancelProcess rpc method is started")
 	res, err := s.repo.Processes().CancelProcess(ctx, req)
 	if err != nil {
-		s.logger.Error(err.Error())
+		s.logger.Error("error on cancel process", "1", err.Error())
 		return nil, err
 	}
 	err = s.repo.Bought().UpdateBought(ctx, req.Id)
 	if err != nil {
-		s.logger.Error(err.Error())
+		s.logger.Error("error on bought", "2", err.Error())
 		return nil, err
 	}
 	s.logger.Info("CancelProcess finished succesfully")
