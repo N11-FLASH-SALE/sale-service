@@ -200,7 +200,7 @@ func (r *ProductsRepo) UpdateProduct(ctx context.Context, req *pb.UpdateProductR
 	if req.PriceWithoutStock > 0 {
 		update["price_without_stock"] = req.PriceWithoutStock
 	}
-	if req.LimitOfProduct > 0 {
+	if req.LimitOfProduct >= 0 {
 		update["limit_of_product"] = req.LimitOfProduct
 	}
 	if len(req.Size) > 0 {
