@@ -15,6 +15,8 @@ type Product interface {
 	IsProductOk(context.Context, *pb.ProductId) error
 	AddPhotosToProduct(context.Context, *pb.AddPhotosRequest) error
 	DeletePhotosFromProduct(context.Context, *pb.DeletePhotosRequest) error
+	IsProductExists(context.Context, *pb.ProductId) error
+	UpdateLimitOfProduct(context.Context, *pb.UpdateLimitOfProductRequest) error
 }
 
 type Bought interface {

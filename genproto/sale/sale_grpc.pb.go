@@ -27,8 +27,10 @@ type ProductClient interface {
 	GetProductById(ctx context.Context, in *ProductId, opts ...grpc.CallOption) (*GetProductByIdResponse, error)
 	GetProductsByUserId(ctx context.Context, in *GetProductsByUserIdRequest, opts ...grpc.CallOption) (*GetProductsByUserIdResponse, error)
 	UpdateProduct(ctx context.Context, in *UpdateProductRequest, opts ...grpc.CallOption) (*Void, error)
+	UpdateLimitOfProduct(ctx context.Context, in *UpdateLimitOfProductRequest, opts ...grpc.CallOption) (*Void, error)
 	DeleteProduct(ctx context.Context, in *ProductId, opts ...grpc.CallOption) (*Void, error)
 	IsProductOk(ctx context.Context, in *ProductId, opts ...grpc.CallOption) (*Void, error)
+	IsProductExists(ctx context.Context, in *ProductId, opts ...grpc.CallOption) (*Void, error)
 	AddPhotosToProduct(ctx context.Context, in *AddPhotosRequest, opts ...grpc.CallOption) (*Void, error)
 	DeletePhotosFromProduct(ctx context.Context, in *DeletePhotosRequest, opts ...grpc.CallOption) (*Void, error)
 }
@@ -86,6 +88,15 @@ func (c *productClient) UpdateProduct(ctx context.Context, in *UpdateProductRequ
 	return out, nil
 }
 
+func (c *productClient) UpdateLimitOfProduct(ctx context.Context, in *UpdateLimitOfProductRequest, opts ...grpc.CallOption) (*Void, error) {
+	out := new(Void)
+	err := c.cc.Invoke(ctx, "/sale.Product/UpdateLimitOfProduct", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *productClient) DeleteProduct(ctx context.Context, in *ProductId, opts ...grpc.CallOption) (*Void, error) {
 	out := new(Void)
 	err := c.cc.Invoke(ctx, "/sale.Product/DeleteProduct", in, out, opts...)
@@ -98,6 +109,15 @@ func (c *productClient) DeleteProduct(ctx context.Context, in *ProductId, opts .
 func (c *productClient) IsProductOk(ctx context.Context, in *ProductId, opts ...grpc.CallOption) (*Void, error) {
 	out := new(Void)
 	err := c.cc.Invoke(ctx, "/sale.Product/IsProductOk", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productClient) IsProductExists(ctx context.Context, in *ProductId, opts ...grpc.CallOption) (*Void, error) {
+	out := new(Void)
+	err := c.cc.Invoke(ctx, "/sale.Product/IsProductExists", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -131,8 +151,10 @@ type ProductServer interface {
 	GetProductById(context.Context, *ProductId) (*GetProductByIdResponse, error)
 	GetProductsByUserId(context.Context, *GetProductsByUserIdRequest) (*GetProductsByUserIdResponse, error)
 	UpdateProduct(context.Context, *UpdateProductRequest) (*Void, error)
+	UpdateLimitOfProduct(context.Context, *UpdateLimitOfProductRequest) (*Void, error)
 	DeleteProduct(context.Context, *ProductId) (*Void, error)
 	IsProductOk(context.Context, *ProductId) (*Void, error)
+	IsProductExists(context.Context, *ProductId) (*Void, error)
 	AddPhotosToProduct(context.Context, *AddPhotosRequest) (*Void, error)
 	DeletePhotosFromProduct(context.Context, *DeletePhotosRequest) (*Void, error)
 	mustEmbedUnimplementedProductServer()
@@ -157,11 +179,17 @@ func (UnimplementedProductServer) GetProductsByUserId(context.Context, *GetProdu
 func (UnimplementedProductServer) UpdateProduct(context.Context, *UpdateProductRequest) (*Void, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateProduct not implemented")
 }
+func (UnimplementedProductServer) UpdateLimitOfProduct(context.Context, *UpdateLimitOfProductRequest) (*Void, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateLimitOfProduct not implemented")
+}
 func (UnimplementedProductServer) DeleteProduct(context.Context, *ProductId) (*Void, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteProduct not implemented")
 }
 func (UnimplementedProductServer) IsProductOk(context.Context, *ProductId) (*Void, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsProductOk not implemented")
+}
+func (UnimplementedProductServer) IsProductExists(context.Context, *ProductId) (*Void, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsProductExists not implemented")
 }
 func (UnimplementedProductServer) AddPhotosToProduct(context.Context, *AddPhotosRequest) (*Void, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddPhotosToProduct not implemented")
@@ -272,6 +300,24 @@ func _Product_UpdateProduct_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Product_UpdateLimitOfProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateLimitOfProductRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServer).UpdateLimitOfProduct(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/sale.Product/UpdateLimitOfProduct",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServer).UpdateLimitOfProduct(ctx, req.(*UpdateLimitOfProductRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Product_DeleteProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ProductId)
 	if err := dec(in); err != nil {
@@ -304,6 +350,24 @@ func _Product_IsProductOk_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProductServer).IsProductOk(ctx, req.(*ProductId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Product_IsProductExists_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServer).IsProductExists(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/sale.Product/IsProductExists",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServer).IsProductExists(ctx, req.(*ProductId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -372,12 +436,20 @@ var Product_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Product_UpdateProduct_Handler,
 		},
 		{
+			MethodName: "UpdateLimitOfProduct",
+			Handler:    _Product_UpdateLimitOfProduct_Handler,
+		},
+		{
 			MethodName: "DeleteProduct",
 			Handler:    _Product_DeleteProduct_Handler,
 		},
 		{
 			MethodName: "IsProductOk",
 			Handler:    _Product_IsProductOk_Handler,
+		},
+		{
+			MethodName: "IsProductExists",
+			Handler:    _Product_IsProductExists_Handler,
 		},
 		{
 			MethodName: "AddPhotosToProduct",

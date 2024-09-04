@@ -96,3 +96,25 @@ func (s ProductService) DeletePhotosFromProduct(ctx context.Context, req *pb.Del
 	s.logger.Info("DeletePhotosFromProduct finished succesfully")
 	return &pb.Void{}, nil
 }
+
+func (s ProductService) UpdateLimitOfProduct(ctx context.Context, req *pb.UpdateLimitOfProductRequest) (*pb.Void, error) {
+	s.logger.Info("UpdateLimitOfProduct rpc method is started")
+	err := s.repo.Product().UpdateLimitOfProduct(ctx, req)
+	if err != nil {
+		s.logger.Error(err.Error())
+		return nil, err
+	}
+	s.logger.Info("UpdateLimitOfProduct finished succesfully")
+	return &pb.Void{}, nil
+}
+
+func (s ProductService) IsProductExists(ctx context.Context, req *pb.ProductId) (*pb.Void, error) {
+	s.logger.Info("IsProductExists rpc method is started")
+	err := s.repo.Product().IsProductExists(ctx, req)
+	if err != nil {
+		s.logger.Error(err.Error())
+		return nil, err
+	}
+	s.logger.Info("IsProductExists finished succesfully")
+	return &pb.Void{}, nil
+}

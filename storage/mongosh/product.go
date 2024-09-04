@@ -36,6 +36,10 @@ func (r *ProductsRepo) CreateProduct(ctx context.Context, req *pb.CreateProductR
 		return nil, fmt.Errorf("invalid end_date format: %v", err)
 	}
 
+	if !startDate.Before(endDate) {
+		return nil, fmt.Errorf("start_date must be before end_date")
+	}
+
 	product := bson.D{
 		{Key: "name", Value: req.Name},
 		{Key: "description", Value: req.Description},
@@ -87,6 +91,7 @@ func (r *ProductsRepo) GetProduct(ctx context.Context, req *pb.GetProductRequest
 
 	// Filter out products with an expired end_date
 	now := time.Now()
+	filter["start_date"] = bson.M{"$lte": now}
 	filter["end_date"] = bson.M{"$gte": now}
 
 	// Set limit and offset for pagination
@@ -200,9 +205,6 @@ func (r *ProductsRepo) UpdateProduct(ctx context.Context, req *pb.UpdateProductR
 	if req.PriceWithoutStock > 0 {
 		update["price_without_stock"] = req.PriceWithoutStock
 	}
-	if req.LimitOfProduct > 0 {
-		update["limit_of_product"] = req.LimitOfProduct
-	}
 	if len(req.Size) > 0 {
 		update["size"] = req.Size
 	}
@@ -265,6 +267,7 @@ func (r *ProductsRepo) IsProductOk(ctx context.Context, req *pb.ProductId) error
 	now := time.Now()
 	filter := bson.M{
 		"_id":        objID,
+		"start_date": bson.M{"$lte": now},
 		"end_date":   bson.M{"$gte": now},
 		"deleted_at": nil,
 	}
@@ -387,4 +390,55 @@ func (r *ProductsRepo) GetProductsByUserId(ctx context.Context, req *pb.GetProdu
 	return &pb.GetProductsByUserIdResponse{
 		Product: pbProducts,
 	}, nil
+}
+
+func (r *ProductsRepo) UpdateLimitOfProduct(ctx context.Context, req *pb.UpdateLimitOfProductRequest) error {
+	productID, err := primitive.ObjectIDFromHex(req.GetId())
+	if err != nil {
+		return fmt.Errorf("invalid product ID format: %v", err)
+	}
+
+	// Create an update document with the new limit_of_product
+	update := bson.D{
+		{Key: "$set", Value: bson.D{
+			{Key: "limit_of_product", Value: req.LimitOfProduct},
+		}},
+	}
+
+	// Update the product in the collection
+	filter := bson.D{{Key: "_id", Value: productID}}
+	result, err := r.Coll.UpdateOne(ctx, filter, update)
+	if err != nil {
+		return fmt.Errorf("failed to update limit of product: %v", err)
+	}
+
+	// Check if the product was found and updated
+	if result.MatchedCount == 0 {
+		return fmt.Errorf("no product found with the given ID")
+	}
+
+	return nil
+}
+
+func (r *ProductsRepo) IsProductExists(ctx context.Context, req *pb.ProductId) error {
+	objID, err := primitive.ObjectIDFromHex(req.Id)
+	if err != nil {
+		return fmt.Errorf("invalid product id: %w", err)
+	}
+
+	// Filter to check if the product exists and is not deleted
+	filter := bson.M{
+		"_id":        objID,
+		"deleted_at": nil, // Ensure the product is not deleted
+	}
+
+	// Try to find the product in the collection
+	err = r.Coll.FindOne(ctx, filter).Err()
+	if err == mongo.ErrNoDocuments {
+		return fmt.Errorf("product not found or deleted")
+	} else if err != nil {
+		return fmt.Errorf("failed to check if product exists: %w", err)
+	}
+
+	return nil
 }
