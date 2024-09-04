@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS wishlist(
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL,
     product_id VARCHAR NOT NULL
+    UNIQUE (user_id, product_id)
 );
 
 
@@ -23,6 +24,7 @@ CREATE TABLE IF NOT EXISTS feedback(
     product_id VARCHAR NOT NULL,
     rating integer NOT NULL,
     description text NOT NULL
+    UNIQUE (user_id, product_id)
 );
 
 CREATE TABLE IF NOT EXISTS bought(
