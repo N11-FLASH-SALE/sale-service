@@ -61,7 +61,7 @@ func (repo *FeedbackRepository) GetFeedback(ctx context.Context, request *pb.Get
 	}
 
 	if count > 0 {
-		response.AverageRating = float64(totalRating / count)
+		response.AverageRating = float64(totalRating) / float64(count)
 	}
 
 	return &response, nil
