@@ -393,7 +393,7 @@ func (r *ProductsRepo) GetProductsByUserId(ctx context.Context, req *pb.GetProdu
 }
 
 func (r *ProductsRepo) UpdateLimitOfProduct(ctx context.Context, req *pb.UpdateLimitOfProductRequest) error {
-	productID, err := primitive.ObjectIDFromHex(req.GetId())
+	productID, err := primitive.ObjectIDFromHex(req.Id)
 	if err != nil {
 		return fmt.Errorf("invalid product ID format: %v", err)
 	}
