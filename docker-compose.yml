@@ -42,7 +42,7 @@ services:
     volumes:
       - db2:/var/lib/mongosh/data
     networks:
-      - healthserve
+      - sales
   
 
   saleservice:
