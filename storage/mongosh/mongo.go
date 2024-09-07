@@ -11,7 +11,7 @@ import (
 
 func Connect(ctx context.Context) (*mongo.Database, error) {
 	conf := config.Load()
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI(conf.Mongo.MDB_ADDRESS))
+	client, err := mongo.Connect(ctx, options.Client().ApplyURI(conf.Mongo.MDB_ADDRESS).SetAuth(options.Credential{Username: "root", Password: "example"}))
 	if err != nil {
 		return nil, err
 	}

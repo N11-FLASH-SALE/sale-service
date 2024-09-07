@@ -31,20 +31,18 @@ services:
     command: ["-path", "/migrations", "-database" ,"postgres://${PDB_USER}:${PDB_PASSWORD}@postgres-db1:${PDB_PORT}/${PDB_NAME}?sslmode=disable","up"]
 
 
-  mongo:
+  mongodb:
     image: mongo:latest
     container_name: mongo
     ports:
-      - 27017:27017
-    networks:
-      - sales
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example 
     volumes:
-      - mongo_data:/data/db
-    healthcheck:
-      test: echo 'db.stats().ok' | mongo localhost:27017/test --quiet
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      - db2:/data/mongosh
+    networks:
+      - healthserve
   
 
   saleservice:
@@ -55,7 +53,7 @@ services:
     networks:
       - sales
     depends_on:
-      - mongo
+      - mongodb
       - postgres-db1
 
 
@@ -66,5 +64,5 @@ networks:
 
 volumes:
   db:
-  mongo_data:
+  db2:
   
