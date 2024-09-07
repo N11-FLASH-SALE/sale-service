@@ -33,7 +33,7 @@ services:
 
   mongodb:
     image: mongo:latest
-    container_name: mongo
+    container_name: mongo_new
     ports:
       - "27017:27017"
     environment:
