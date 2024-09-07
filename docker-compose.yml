@@ -40,7 +40,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example 
     volumes:
-      - db2:/var/lib/mongosh/data
+      - db2:/data/db
     networks:
       - sales
   
